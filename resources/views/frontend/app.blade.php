@@ -1,6 +1,6 @@
  @include('frontend.partials.header')
+ @yield('counter')
 
+ @yield('content')
 
-@yield('content')
-
-@include('frontend.partials.footer')
+ @include('frontend.partials.footer')

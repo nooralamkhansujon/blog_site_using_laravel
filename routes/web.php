@@ -25,4 +25,6 @@ Route::group([],function(){
    Route::get('/contact','Frontend\HomeController@contact')->name('contact');
    Route::get('/portfolio','Frontend\HomeController@portfolio')->name('portfolio');
    Route::get('/project','Frontend\HomeController@project')->name('project');
+
+   //
 });

@@ -1,6 +1,8 @@
 @extends('frontend.app')
 
-
+@section('counter')
+      @include('frontend.partials.counter')
+@endsection
 
 @section('content')
 <section class="ftco-about ftco-no-pt ftco-no-pb img ftco-section bg-light">

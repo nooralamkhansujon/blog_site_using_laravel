@@ -1,6 +1,8 @@
 @extends('frontend.app')
 
-
+@section('counter')
+      @include('frontend.partials.counter')
+@endsection
 
 @section('content')
     <section class="ftco-section bg-light" id="attorneys-section">
@@ -16,7 +18,7 @@
 					<div class="col-md-6 col-lg-3 ftco-animate">
 						<div class="staff">
 							<div class="img-wrap d-flex align-items-stretch">
-								<div class="img align-self-stretch" style="background-image: url(images/staff-1.jpg);"></div>
+								<div class="img align-self-stretch" style="background-image: url({{asset('images/staff-1.jpg')}});"></div>
 							</div>
 							<div class="text d-flex align-items-center pt-3 text-center">
 								<div>
@@ -37,7 +39,7 @@
 					<div class="col-md-6 col-lg-3 ftco-animate">
 						<div class="staff">
 							<div class="img-wrap d-flex align-items-stretch">
-								<div class="img align-self-stretch" style="background-image: url(images/staff-2.jpg);"></div>
+								<div class="img align-self-stretch" style="background-image: url({{asset('images/staff-2.jpg')}});"></div>
 							</div>
 							<div class="text d-flex align-items-center pt-3 text-center">
 								<div>
@@ -45,13 +47,13 @@
 									<span class="position mb-4">software developer</span>
 									<div class="faded">
 										<ul class="ftco-social text-center">
-			                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-			                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-			                <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-			                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-			              </ul>
-		              </div>
-		            </div>
+                                            <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+                                            <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                                            <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
+                                            <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+			                            </ul>
+		                            </div>
+		                        </div>
 							</div>
 						</div>
 					</div>
