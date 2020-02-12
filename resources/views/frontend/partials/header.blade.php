@@ -40,21 +40,23 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
 	      <a class="navbar-brand" href="index.html">SHIBBIR-IT</a>
-	      <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+          <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse"
+            data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="oi oi-menu"></span> Menu
 	      </button>
 
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav nav ml-auto">
-	          <li class="nav-item"><a href="#home-section" class="nav-link"><span>Home</span></a></li>
-	          <li class="nav-item"><a href="portfolio.html" class="nav-link"><span>Protfolio</span></a></li>
-	          <li class="nav-item"><a href="#practice-section" class="nav-link"><span>Project</span></a></li>
-	          <li class="nav-item"><a href="#attorneys-section" class="nav-link"><span>Client Reviews</span></a></li>
-	          <li class="nav-item"><a href="#blog-section" class="nav-link"><span>Blog</span></a></li>
-
-	          <li class="nav-item"><a href="#contact-section" class="nav-link"><span>Contact</span></a></li>
-
-	          <li class="nav-item cta"><a href="#" class="nav-link" data-toggle="modal" data-target="#modalAppointment">Subscribe Us</a></li>
+            <li class="nav-item"><a href="{{route('home')}}" class="nav-link"><span>Home</span></a></li>
+	          <li class="nav-item"><a href="{{route('portfolio')}}" class="nav-link"><span>Protfolio</span></a></li>
+	          <li class="nav-item"><a href="{{route('project')}}" class="nav-link"><span>Project</span></a></li>
+	          <li class="nav-item"><a href="{{route('about')}}" class="nav-link"><span>About</span></a></li>
+	          <li class="nav-item"><a href="{{route('blog')}}" class="nav-link"><span>Blog</span></a></li>
+              <li class="nav-item"><a href="{{route('contact')}}" class="nav-link"><span>Contact</span></a></li>
+              <li class="nav-item"><a href="{{route('blog')}}" class="nav-link"><span>Login</span></a></li>
+              <li class="nav-item"><a href="{{route('contact')}}" class="nav-link"><span>Register</span></a></li>
+             <li class="nav-item cta"><a href="#" class="nav-link"
+                data-toggle="modal" data-target="#modalAppointment">Subscribe Us</a></li>
 	        </ul>
 	      </div>
       </nav>
@@ -63,13 +65,14 @@
         <div class="overlay"></div>
         <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-end" data-scrollax-parent="true">
-            <div class="col-md-6 ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
-            <h1  class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Web Developer base on php and laravel</h1>
-        <p class="hiding" >Hi! i am jquery coding.click me to check your instruction. </p>
-
-
-            <p class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">I am Web Developer.I love developing.Also, I am junior wordpress theme developer.I am not expert designer but, I have knowldge of HTML,CSS,JAVASCRIPT,JQUERY,BOOTSTRAP. </p>
-            <p><a href="#" class="btn btn-primary py-3 px-4" data-toggle="modal" data-target="#modalAppointment">contact to order</a></p>
+            <div class="col-md-6 ftco-animate" data-scrollax="properties: { translateY: '70%' }">
+            <h1  class="mb-4" data-scrollax="properties: {translateY: '30%', opacity: 1.6 }">Web Developer base on php and laravel</h1>
+            <p class="hiding" >Hi! i am jquery coding.click me to check your instruction. </p>
+            <p class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">
+                I am Web Developer.I love developing.Also, I am junior wordpress theme developer.
+                I am not expert designer but, I have knowldge of HTML,CSS,JAVASCRIPT,JQUERY,BOOTSTRAP.
+            </p>
+            <p><a href="#" class="btn btn-primary py-3 px-4" data-toggle="modal" data-target="#modalAppointment">Subscribe Us</a></p>
             </div>
         </div>
         </div>
