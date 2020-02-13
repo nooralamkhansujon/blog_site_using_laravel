@@ -155,12 +155,6 @@
         const modal_links   = document.querySelectorAll(".modal_link");
         ///select all modal
         const modals        = document.querySelectorAll('.modal');
-
-        body.addEventListener('click',function(){
-              this.setAttribute('data-dismiss','modal');
-        });
-
-
         function removeShowModal()
         {
             modals.forEach(modal=>{
@@ -171,10 +165,10 @@
         }
         modal_links.forEach(modal_link=>{
               modal_link.addEventListener('click',function(){
-                    target         = this.dataset.target;
-                    target_id      = target.split('#')[1];//modal_id
-                    target_element = document.getElementById(target_id);
-                    console.log(target_element);
+                    targetModal         = this.dataset.target;
+                    targetModal_id      = target.split('#')[1];//modal_id
+                    targetModalElement  = document.getElementById(target_id);
+                    // console.log(targetModalElement);
                     removeShowModal()
                     target_element.classList.add('show');
                     target_element.style.display="block";
@@ -185,6 +179,15 @@
         });
 
 
+        // end of code for modal
+
+
+        // this code for alert message
+
+
+
     </script>
+
+
  </body>
 </html>

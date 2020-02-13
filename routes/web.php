@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Auth;
 //     return view('frontend.app');
 // });
 
-Auth::routes();
+// Auth::routes();
 
 Route::group([],function(){
    Route::get('/','Frontend\HomeController@index')->name('home');
@@ -26,5 +26,7 @@ Route::group([],function(){
    Route::get('/portfolio','Frontend\HomeController@portfolio')->name('portfolio');
    Route::get('/project','Frontend\HomeController@project')->name('project');
 
-   //
+   //login and register route
+   Route::post('/login','Auth\LoginController@login')->name('login');
+   Route::post('/register','Auth\LoginController@register')->name('register');
 });
