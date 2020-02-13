@@ -8,7 +8,7 @@
           </button>
         </div>
         <div class="modal-body">
-            <form method="POST" action="{{ route('login') }}">
+            <form method="POST" id="login_form" action="{{ route('login') }}">
                 @csrf
 
                 <div class="form-group row">

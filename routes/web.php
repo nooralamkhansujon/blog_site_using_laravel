@@ -28,5 +28,5 @@ Route::group([],function(){
 
    //login and register route
    Route::post('/login','Auth\LoginController@login')->name('login');
-   Route::post('/register','Auth\LoginController@register')->name('register');
+   Route::post('/register','Auth\RegisterController@register')->name('register');
 });

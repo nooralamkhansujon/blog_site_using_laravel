@@ -146,10 +146,9 @@
  <script src="{{asset('js/scrollax.min.js')}}"></script>
  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
  <script src="{{asset('js/google-map.js')}}"></script>
-
  <script src="{{asset('js/main.js')}}"></script>
 
-    <script type="text/javascript">
+    <script defer type="text/javascript">
 
         //select all modal link
         const modal_links   = document.querySelectorAll(".modal_link");
@@ -165,13 +164,14 @@
         }
         modal_links.forEach(modal_link=>{
               modal_link.addEventListener('click',function(){
+                   console.log(this);
                     targetModal         = this.dataset.target;
-                    targetModal_id      = target.split('#')[1];//modal_id
-                    targetModalElement  = document.getElementById(target_id);
+                    targetModal_id      = targetModal.split('#')[1];//modal_id
+                    targetModalElement  = document.getElementById(targetModal_id);
                     // console.log(targetModalElement);
                     removeShowModal()
-                    target_element.classList.add('show');
-                    target_element.style.display="block";
+                    targetModalElement.classList.add('show');
+                    targetModalElement.style.display="block";
 
 
               });

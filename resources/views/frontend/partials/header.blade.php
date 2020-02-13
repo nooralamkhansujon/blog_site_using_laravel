@@ -58,7 +58,7 @@
                       data-toggle="modal" data-target="#login_modal" class="nav-link modal_link"><span>Login</span>
                     </a>
               </li>
-              <li class="nav-item ">
+              <li class="nav-item">
                     <a href="#"
                         data-toggle="modal" data-target="#register_modal" class="nav-link modal_link">
                         <span>Register</span>
@@ -75,40 +75,44 @@
 @include('frontend.partials.login_modal')
 @include('frontend.partials.register_modal')
 
-<style>
-    .custom_alert{
-      position:relative;
-      top:70px;
-      right:0px;
-      z-index:10000;
-      width:330px;
-      transform:translateX(1500px);
-      transition:transform 1s ease;
+
+<script type="text/javascript">
+
+    //console.log(alert_message);
+    setInterval(function(){
+        // alert_message.style.transform = "translateX(1150px)";
+        showModal();
+    },2000);
+
+    function showModal(){
+          var alert_message = document.querySelector('.custom_alert');
+          alert_message.style.transform = "translateX(0)";
     }
-    .alert{
-        position: absolute;
-    }
-</style>
 
-  <div class="custom_alert">
-      <div class="alert alert-warning alert-dismissible fade show" role="alert">
-            <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                   <span aria-hidden="true">&times;</span>
-                </button>
-      </div>
-  </div>
+    $("#register_form").on('submit',function(event){
+            event.preventDefault();
 
-   <script type="text/javascript">
-         const alert_message = document.querySelector('.custom_alert');
-        //  console.log(alert_message);
-         setInterval(function(){
-            // alert_message.style.transform = "translateX(1150px)";
-            showModal();
-         },2000);
-         function showModal(){
-            alert_message.style.transform = "translateX(1150px)";
-         }
-   </script>
+            console.log(new FormData(this));
+            $.ajax({
+                url     : "{{route('register')}}",
+                data    :  $(this).serialize(),
+                type    : "POST",
+                dataType: "JSON",
+                success:function(data){
 
+                }
+            });
+    });
 
+    // $("#login_form").on('submit',function(){
+    //         $.ajax({
+    //             url     : "{{route('login')}}",
+    //             type    : "POST",
+    //             dataType: "JSON",
+    //             success:function(data){
+
+    //             }
+    //         });
+    // });
+
+ </script>

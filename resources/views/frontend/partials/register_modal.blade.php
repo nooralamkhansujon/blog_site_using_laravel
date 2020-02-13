@@ -8,21 +8,26 @@
           </button>
         </div>
         <div class="modal-body">
-            <form method="POST" action="{{ route('register') }}">
+            <form method="POST" id="register_form" action="{{ route('register') }}">
                 @csrf
 
                 <div class="form-group row">
-                    <label for="email" class="col-md-12 col-form-label text-md-left">
-                        {{ __('E-Mail Address') }}
+                    <label for="register_name" class="col-md-12 col-form-label text-md-left">
+                        {{ __('Name') }}
                     </label>
-
                     <div class="col-md-12">
                         <input id="register_name" type="text" class="form-control" name="name"
-                        value="{{ old('name') }}" required autofocus>
+                        value="{{ old('name') }}"  pattern="[A-Za-z]+" max="10" required autofocus>
                     </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="register_email" class="col-md-12 col-form-label text-md-left">
+                        {{ __('E-Mail Address') }}
+                    </label>
                     <div class="col-md-12">
                         <input id="register_email" type="email" class="form-control" name="email"
-                        value="{{ old('email') }}" required autofocus>
+                        value="{{ old('email') }}"   required autofocus>
                     </div>
                 </div>
 
@@ -53,10 +58,10 @@
                 <div class="form-group row mb-0">
                     <div class="col-md-8 offset-md-4">
                         <button type="submit" class="btn btn-primary">
-                            {{ __('Login') }}
+                            {{ __('Register') }}
                         </button>
 
-                        @if (Route::has('password.request'))
+                        @if(Route::has('password.request'))
                             <a class="btn btn-link"
                             href="{{ route('password.request') }}">
                                 {{ __('Forgot Your Password?') }}
@@ -68,7 +73,6 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Register</button>
         </div>
       </div>
     </div>
