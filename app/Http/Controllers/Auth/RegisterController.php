@@ -73,6 +73,6 @@ class RegisterController extends Controller
 
     public function register(Request $request){
           $this->validator($request->all());
-          dd($request->except('_token'));
+          $this->create($request->except('_token'));
     }
 }
