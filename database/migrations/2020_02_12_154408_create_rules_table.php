@@ -18,6 +18,8 @@ class CreateRulesTable extends Migration
             $table->string('name');
             $table->text('description');
             $table->timestamps();
+            $table->string('slug');
+            $table->softDeletes();
         });
     }
 

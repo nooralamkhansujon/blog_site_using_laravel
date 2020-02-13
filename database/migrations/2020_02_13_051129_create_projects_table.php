@@ -15,6 +15,9 @@ class CreateProjectsTable extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->increments('id');
+            // $table->string('project_url');
+            $table->string('slug');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCommmentsTable extends Migration
+class CreateCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateCommmentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('commments', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
+            $table->string('name');
             $table->string('slug');
             $table->softDeletes();
+            $table->timestamps();
         });
     }
 
@@ -28,6 +29,6 @@ class CreateCommmentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('commments');
+        Schema::dropIfExists('categories');
     }
 }
