@@ -15,8 +15,10 @@ class CreateCommmentsTable extends Migration
     {
         Schema::create('commments', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id');
+            $table->integer('blog_id');
+            $table->integer('parent_id')->default(0);
             $table->timestamps();
-            $table->string('slug');
             $table->softDeletes();
         });
     }
