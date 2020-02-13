@@ -149,6 +149,42 @@
 
  <script src="{{asset('js/main.js')}}"></script>
 
+    <script type="text/javascript">
 
+        //select all modal link
+        const modal_links   = document.querySelectorAll(".modal_link");
+        ///select all modal
+        const modals        = document.querySelectorAll('.modal');
+
+        body.addEventListener('click',function(){
+              this.setAttribute('data-dismiss','modal');
+        });
+
+
+        function removeShowModal()
+        {
+            modals.forEach(modal=>{
+                // console.log(modal);
+                modal.classList.remove('show');
+                modal.style.display = "none";
+            });
+        }
+        modal_links.forEach(modal_link=>{
+              modal_link.addEventListener('click',function(){
+                    target         = this.dataset.target;
+                    target_id      = target.split('#')[1];//modal_id
+                    target_element = document.getElementById(target_id);
+                    console.log(target_element);
+                    removeShowModal()
+                    target_element.classList.add('show');
+                    target_element.style.display="block";
+
+
+              });
+            //console.log(modal_link);
+        });
+
+
+    </script>
  </body>
 </html>

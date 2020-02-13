@@ -35,7 +35,7 @@
 
   </head>
 
-  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+  <body data-spy="scroll" data-dismiss="modal" data-target=".site-navbar-target" data-offset="300">
 
 
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
@@ -54,21 +54,23 @@
 	          <li class="nav-item"><a href="{{route('blog')}}" class="nav-link"><span>Blog</span></a></li>
               <li class="nav-item"><a href="{{route('contact')}}" class="nav-link"><span>Contact</span></a></li>
               <li class="nav-item">
-                   <a href="{{route('blog')}}"
+                   <a href="#"
                       data-toggle="modal" data-target="#login_modal" class="nav-link modal_link"><span>Login</span>
                     </a>
               </li>
-              <li class="nav-item modal_link">
+              <li class="nav-item ">
                     <a href="#"
-                        data-toggle="modal" data-target="#register_modal" class="nav-link">
+                        data-toggle="modal" data-target="#register_modal" class="nav-link modal_link">
                         <span>Register</span>
                     </a>
                </li>
-              <li class="nav-item cta modal_link"><a href="#" class="nav-link"
-                data-toggle="modal" data-target="#login_modal">Subscribe Us</a></li>
-	        </ul>
-	      </div>
-      </nav>
+              <li class="nav-item cta ">
+                  <a href="#" class="nav-link modal_link"
+                data-toggle="modal" data-target="#login_modal">Subscribe Us</a>
+              </li>
+	       </ul>
+	    </div>
+    </nav>
 
 @include('frontend.partials.login_modal')
 @include('frontend.partials.register_modal')
