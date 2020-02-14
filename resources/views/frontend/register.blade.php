@@ -13,33 +13,44 @@
         <div class="container">
             <div class="section_body">
                  <h2 class="text-success ">Please Login For Subscribe</h2>
-               <form action="">
+               <form id="register_form" action="{{asset('register')}}" method="POST">
+                    @csrf
                    <div class="input_section">
-                      <label for="">
-                          Name
-                       </label>
-                       <input type="text" name="name" placeholder="Enter Your Name">
+                      <label for="register_name">Name</label>
+                       <input type="text" id="register_name" name="name" placeholder="Enter Your Name">
+                        @if($errors->has('name'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('name') }}</strong>
+                            </span>
+                        @endif
                    </div>
                    <div class="input_section">
-                       <label for="" class="section_label">
+                       <label for="register_email">
                            Email
                         </label>
-                        <input type="text" name="name" placeholder="Enter Your Email">
+                        <input type="text" id="register_email" name="email" placeholder="Enter Your Email">
+                        @if($errors->has('email'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('email') }}</strong>
+                            </span>
+                        @endif
                     </div>
                     <div class="input_section">
-                       <label for="" class="section_label">
-                           Password
-                        </label>
+                       <label for="register_password">Password</label>
                         <input type="password" name="password" placeholder="Enter Your Password" >
+                        @if($errors->has('password'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('password') }}</strong>
+                            </span>
+                        @endif
                     </div>
                     <div class="input_section">
-                       <label for="" class="section_label">
-                          confirm Password
-                        </label>
-                        <input type="password" name="confirm_password" placeholder="Enter Your Password" >
+                       <label for="reg_conf">confirm Password</label>
+                        <input type="password" id="reg_conf" name="password_confirmation"
+                        placeholder="Enter Your Password" >
                     </div>
                     <div class=input_section>
-                        <input type="submit" class="btn btn-success" name="submit" value="submit" >
+                        <input type="submit" class="btn btn-success" name="register" value="Register" >
                     </div>
                     <div>
                </form>
@@ -49,3 +60,5 @@
 
 </body>
 </html>
+
+

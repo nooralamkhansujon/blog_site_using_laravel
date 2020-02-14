@@ -74,15 +74,16 @@ class RegisterController extends Controller
     public function register(Request $request){
         //    dd($request->all());
           $this->validator($request->all());
-          $user = new User();
-          $user->name  = $request->name;
-          $user->email = $request->email;
-          $user->password = Hash::make($request->password);
-          $user->save();
+          $user = $this->create($request->except('_token'));
           if($user){
-                $this->setSuccess("Your Registration is completed! now You can log in!");
-                echo "Register";
+              $this->setSuccess("Your Registration is completed! now You can log in!");
+              return redirect()->route('login');
           }
+          else{
+              $this->setError("Error! Your Registration is not completed!");
+              return back();
+          }
+
 
     }
 
