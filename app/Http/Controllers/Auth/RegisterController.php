@@ -50,8 +50,8 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name'     => 'required|string|max:255',
-            'email'    => 'required|max:255|unique:users',
+            'name'     => 'required|string|max:255|unique:users,name',
+            'email'    => 'required|max:255|unique:users,email',
             'password' => 'required|string|min:6|confirmed',
         ]);
     }
@@ -72,16 +72,24 @@ class RegisterController extends Controller
     }
 
     public function register(Request $request){
-        //    dd($request->all());
-          $this->validator($request->all());
+          //dd($request->all());
+          $validator =  $this->validator($request->all());
+
+          //if validator fails then redirect previous page
+          if ($validator->fails()) {
+             return back()->withErrors($validator)
+                          ->withInput();
+           }
+
+          //pass data to create function except _token
           $user = $this->create($request->except('_token'));
           if($user){
-              $this->setSuccess("Your Registration is completed! now You can log in!");
-              return redirect()->route('login');
+                $this->setSuccess("Your Registration is completed! now You can log in!");
+                return redirect()->route('login');
           }
           else{
-              $this->setError("Error! Your Registration is not completed!");
-              return back();
+                $this->setError("Error! Your Registration is not completed!");
+                return back();
           }
 
 

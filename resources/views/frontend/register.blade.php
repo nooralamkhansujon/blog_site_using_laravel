@@ -11,15 +11,24 @@
 <body>
     <section id="register_section">
         <div class="container">
+            <div class="col-md-6 ml-5 offset-2">
+                @if(session()->has('message'))
+                   <div class="container" style="margin-left:14.3rem;">
+                        <div class="alert alert-{{session()->get('type')}}">
+                             {{session()->get('message')}}
+                        </div>
+                   </div>
+                @endif
+            </div>
             <div class="section_body">
-                 <h2 class="text-success ">Please Login For Subscribe</h2>
-               <form id="register_form" action="{{asset('register')}}" method="POST">
+                 <h2 class="text-success ">Register Form</h2>
+               <form id="register_form" action="{{route('register')}}" method="POST">
                     @csrf
                    <div class="input_section">
                       <label for="register_name">Name</label>
                        <input type="text" id="register_name" name="name" placeholder="Enter Your Name">
                         @if($errors->has('name'))
-                            <span class="invalid-feedback" role="alert">
+                            <span class="text-danger" role="alert">
                                 <strong>{{ $errors->first('name') }}</strong>
                             </span>
                         @endif
@@ -30,7 +39,7 @@
                         </label>
                         <input type="text" id="register_email" name="email" placeholder="Enter Your Email">
                         @if($errors->has('email'))
-                            <span class="invalid-feedback" role="alert">
+                            <span class="text-danger"  role="alert">
                                 <strong>{{ $errors->first('email') }}</strong>
                             </span>
                         @endif
@@ -39,7 +48,7 @@
                        <label for="register_password">Password</label>
                         <input type="password" name="password" placeholder="Enter Your Password" >
                         @if($errors->has('password'))
-                            <span class="invalid-feedback" role="alert">
+                            <span class="text-danger"  role="alert">
                                 <strong>{{ $errors->first('password') }}</strong>
                             </span>
                         @endif
