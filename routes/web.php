@@ -33,3 +33,9 @@ Route::group([],function(){
    Route::get('/register','Auth\RegisterController@ShowRegistionForm')->name('register');
    Route::post('/register','Auth\RegisterController@register')->name('register.submit');
 });
+
+
+
+Route::group([],function(){
+   Route::get('/admin','Backend\AdminController@dashboard')->name('dashboard');
+});
