@@ -8,7 +8,7 @@ body{
     background:linear-gradient(to right,rgb(87, 113, 56,0.9),rgba(51, 66, 46,0.8));
 }
 #login_section,#register_section{
-     margin-top:10px;
+     margin-top:3rem;
 }
 .section_body{
     background:rgba(53, 44, 44,0.7);

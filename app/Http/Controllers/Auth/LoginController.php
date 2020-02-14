@@ -50,5 +50,9 @@ class LoginController extends Controller
        //else redirect with error page
     }
 
+    public function showLoginForm(){
+        return view('frontend.login');
+    }
+
 
 }

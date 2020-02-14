@@ -27,6 +27,8 @@ Route::group([],function(){
    Route::get('/project','Frontend\HomeController@project')->name('project');
 
    //login and register route
-   Route::post('/login','Auth\LoginController@login')->name('login');
-   Route::post('/register','Auth\RegisterController@register')->name('register');
+   Route::get('/login','Auth\LoginController@showLoginForm')->name('login');
+   Route::post('/login','Auth\LoginController@login')->name('login.submit');
+   Route::get('register','Auth\LoginController@RegisterForm')->name('register');
+   Route::post('/register','Auth\RegisterController@register')->name('register.submit');
 });
