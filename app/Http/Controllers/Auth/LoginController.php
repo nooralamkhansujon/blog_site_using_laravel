@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -40,36 +41,35 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-
         //validate the data
-        $request->validate([
-                $this->username()  => 'required|string',
-                'password'         => 'required|string',
+        $this->validate($request,[
+             $this->username()  => 'required|string',
+             'password'          => 'required|string',
         ]);
-
         //log the user in
         $data = [
             'email'    => $request->email,
             'password' => $request->password
         ];
-        if(auth()->attempt($data,$request->remember)){
+        //Attempt to log the user in
+        if(Auth::attempt($data,$request->remember)){
+            //if successful, then redirect to their intended location
             $this->setSuccess("You are login successfully!");
-            return redirect()->route('home');
+            return redirect()->intended(route('home'));
         }
-        else{
-            $this->setSuccess('Error! Something is wrong Please Try again');
-            return back()->route('login');
-        }
-
-
-       // if login success then redirect to the intended page
-
-       //else redirect with error page
+         //if unsuccessfull then redirect back to the login with  the form data
+         $this->setError('Error! Something is wrong Please Try again');
+         return redirect()->back()->withInput($request->only('email','remember'));
     }
 
     public function showLoginForm(){
         return view('frontend.login');
     }
 
+    public function logout()
+    {
+        Auth::guard('web')->logout();
+        return redirect()->route('home');
+    }
 
 }

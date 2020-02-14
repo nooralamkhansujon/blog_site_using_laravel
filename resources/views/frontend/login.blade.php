@@ -31,17 +31,23 @@
                 <h2 class="text-success">Please Login For Subscribe</h2>
                  <form action="{{route('login')}}" method="POST">
                         @csrf
-                        <div class="input_section">
-                            <label for="login_name">Name</label>
-                            <input type="text" id="login_name" name="name" placeholder="Enter Your Name">
-                        </div>
                        <div class="input_section">
                             <label for="login_email" class="section_label">Email</label>
                             <input type="text" id="login_email" name='email' placeholder="Enter Your Email">
+                            @if($errors->has('email'))
+                                <span class="text-danger" role="alert">
+                                    <strong>{{ $errors->first('email') }}</strong>
+                                </span>
+                           @endif
                         </div>
                         <div class="input_section">
                             <label for="login_password" class="section_label"> Password</label>
                             <input type="password" id="login_password" name="password" placeholder="Enter Your Password" >
+                            @if($errors->has('password'))
+                                <span class="text-danger" role="alert">
+                                    <strong>{{ $errors->first('password') }}</strong>
+                                </span>
+                            @endif
                         </div>
                         <div class="input_section ml-3">
                             <input class="form-check-input" type="checkbox" name="remember"

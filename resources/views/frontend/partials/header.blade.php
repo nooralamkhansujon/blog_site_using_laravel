@@ -81,19 +81,39 @@
 	          <li class="nav-item"><a href="{{route('about')}}" class="nav-link"><span>About</span></a></li>
 	          <li class="nav-item"><a href="{{route('blog')}}" class="nav-link"><span>Blog</span></a></li>
               <li class="nav-item"><a href="{{route('contact')}}" class="nav-link"><span>Contact</span></a></li>
-              <li class="nav-item">
-              <a href="{{route('login')}}" class="nav-link"><span>Login</span></a>
-              </li>
-              <li class="nav-item">
-              <a href="{{route('register')}}" class="nav-link">
-                        <span>Register</span>
-                    </a>
-               </li>
+              @if(!auth()->check())
+                    <li class="nav-item">
+                         <a href="{{route('login')}}" class="nav-link"><span>Login</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('register')}}" class="nav-link">
+                            <span>Register</span>
+                        </a>
+                    </li>
+               @else
+                    <li class="nav-item">
+                        <a href="{{route('logout')}}" id="logout" class="nav-link">
+                            <span>Logout</span>
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </li>
+               @endif
               <li class="nav-item cta ">
-                  <a href="#" class="nav-link">Subscribe Us</a>
+                    <a href="#" class="nav-link">Subscribe Us</a>
+
               </li>
 	       </ul>
 	    </div>
     </nav>
 
 
+<script type="text/javascript">
+    let logout = document.getElementById('logout');
+    logout.addEventListener('click',function(event){
+            event.preventDefault();
+            let logout_form = document.getElementById('logout-form');
+            logout_form.submit();
+    });
+</script>
