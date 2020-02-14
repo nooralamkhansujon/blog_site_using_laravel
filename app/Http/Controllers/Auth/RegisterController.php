@@ -50,9 +50,9 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:6', 'confirmed'],
+            'name'     => 'required|string|max:255',
+            'email'    => 'required|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
         ]);
     }
 
@@ -72,7 +72,17 @@ class RegisterController extends Controller
     }
 
     public function register(Request $request){
+        //    dd($request->all());
           $this->validator($request->all());
-          $this->create($request->except('_token'));
+          $user = new User();
+          $user->name  = $request->name;
+          $user->email = $request->email;
+          $user->password = Hash::make($request->password);
+          $user->save();
+          if($user){
+                $this->setSuccess("Your Registration is completed! now You can log in!");
+                echo "Register";
+          }
+
     }
 }

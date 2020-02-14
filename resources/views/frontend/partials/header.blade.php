@@ -79,12 +79,12 @@
 <script type="text/javascript">
 
     //console.log(alert_message);
-    setInterval(function(){
-        // alert_message.style.transform = "translateX(1150px)";
-        showModal();
-    },2000);
+    // setInterval(function(){
+    //     // alert_message.style.transform = "translateX(1150px)";
+    //     showModal();
+    // },2000);
 
-    function showModal(){
+    function showAlert(){
           var alert_message = document.querySelector('.custom_alert');
           alert_message.style.transform = "translateX(0)";
     }
@@ -97,9 +97,11 @@
                 url     : "{{route('register')}}",
                 data    :  $(this).serialize(),
                 type    : "POST",
-                dataType: "JSON",
                 success:function(data){
-
+                     if(data.toLowerCase() == 'register')
+                     {
+                        showAlert();
+                     }
                 }
             });
     });
