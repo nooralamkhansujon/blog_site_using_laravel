@@ -30,11 +30,42 @@
     <link rel="stylesheet" href="{{asset('css/icomoon.css')}}">
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <script src="{{asset('myjs/jquery-3.2.1.min.js')}}"></script>
+    <style>
+        .custom_alert{
+            position:relative;
+            top:80px;
+            z-index:10000;
+        }
+        .inner_alert{
+            position:absolute;
+            width:100%;
+            height:80px;
+            display:flex;
+            justify-content: center;
+        }
+
+    </style>
   </head>
+
+
 
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 
+     {{-- custom alert message  --}}
+     <div class="custom_alert">
+            @if(session()->has('message'))
+            <div class="inner_alert alert alert-{{session()->get('type')}} alert-dismissible fade show">
+                    <p>{{ session()->get('message') }}</p>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
+     </div>
+       {{-- end of custom alert message  --}}
 
+
+    {{-- start of nav section  --}}
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
 	      <a class="navbar-brand text-success" href="index.html">SHIBBIR-IT</a>
           <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse"
@@ -51,10 +82,10 @@
 	          <li class="nav-item"><a href="{{route('blog')}}" class="nav-link"><span>Blog</span></a></li>
               <li class="nav-item"><a href="{{route('contact')}}" class="nav-link"><span>Contact</span></a></li>
               <li class="nav-item">
-                   <a href="#" class="nav-link"><span>Login</span></a>
+              <a href="{{route('login')}}" class="nav-link"><span>Login</span></a>
               </li>
               <li class="nav-item">
-                    <a href="#" class="nav-link">
+              <a href="{{route('register')}}" class="nav-link">
                         <span>Register</span>
                     </a>
                </li>

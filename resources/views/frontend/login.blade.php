@@ -30,24 +30,34 @@
 
                 <h2 class="text-success">Please Login For Subscribe</h2>
                  <form action="{{route('login')}}" method="POST">
-                    @csrf
-                   <div class="input_section">
-                      <label for="login_name">Name</label>
-                       <input type="text" id="login_name" name="name" placeholder="Enter Your Name">
-                   </div>
-                   <div class="input_section">
-                       <label for="login_email" class="section_label">Email</label>
-                        <input type="text" id="login_email" name='email' placeholder="Enter Your Email">
-                    </div>
-                    <div class="input_section">
-                       <label for="login_password" class="section_label"> Password</label>
-                        <input type="password" id="login_password" name="password" placeholder="Enter Your Password" >
-                    </div>
-                    <div class=input_section>
-                        <input type="submit" class="btn btn-success" name="login" value="Login" >
-                    </div>
-                    <div>
-               </form>
+                        @csrf
+                        <div class="input_section">
+                            <label for="login_name">Name</label>
+                            <input type="text" id="login_name" name="name" placeholder="Enter Your Name">
+                        </div>
+                       <div class="input_section">
+                            <label for="login_email" class="section_label">Email</label>
+                            <input type="text" id="login_email" name='email' placeholder="Enter Your Email">
+                        </div>
+                        <div class="input_section">
+                            <label for="login_password" class="section_label"> Password</label>
+                            <input type="password" id="login_password" name="password" placeholder="Enter Your Password" >
+                        </div>
+                        <div class="input_section ml-3">
+                            <input class="form-check-input" type="checkbox" name="remember"
+                            id="login_remember" {{ old('remember') ? 'checked' : '' }}>
+                            <label class="section_label" for="remember">
+                            {{ __('Remember Me') }}
+                            </label>
+                        </div>
+                        <div class=input_section>
+                            <div class="input_body d-flex justify-content-center">
+                                <input type="submit" class="btn btn-success" name="login" value="Login" >
+                                <p class="ml-3 mt-3">Need An Account? <a href="{{route('register')}}">Register</a></p>
+                            </div>
+                        </div>
+                <div>
+             </form>
             </div>
         </div>
     </section>

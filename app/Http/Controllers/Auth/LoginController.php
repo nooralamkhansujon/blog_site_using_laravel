@@ -40,11 +40,28 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        $this->validateLogin($request);
 
-       //validate the data
+        //validate the data
+        $request->validate([
+                $this->username()  => 'required|string',
+                'password'         => 'required|string',
+        ]);
 
-       // log the user in
+        //log the user in
+        $data = [
+            'email'    => $request->email,
+            'password' => $request->password
+        ];
+        if(auth()->attempt($data,$request->remember)){
+            $this->setSuccess("You are login successfully!");
+            return redirect()->route('home');
+        }
+        else{
+            $this->setSuccess('Error! Something is wrong Please Try again');
+            return back()->route('login');
+        }
+
+
        // if login success then redirect to the intended page
 
        //else redirect with error page

@@ -34,9 +34,7 @@
                         @endif
                    </div>
                    <div class="input_section">
-                       <label for="register_email">
-                           Email
-                        </label>
+                       <label for="register_email">Email</label>
                         <input type="text" id="register_email" name="email" placeholder="Enter Your Email">
                         @if($errors->has('email'))
                             <span class="text-danger"  role="alert">
@@ -48,7 +46,7 @@
                        <label for="register_password">Password</label>
                         <input type="password" name="password" placeholder="Enter Your Password" >
                         @if($errors->has('password'))
-                            <span class="text-danger"  role="alert">
+                            <span class="text-danger" role="alert">
                                 <strong>{{ $errors->first('password') }}</strong>
                             </span>
                         @endif
@@ -59,7 +57,10 @@
                         placeholder="Enter Your Password" >
                     </div>
                     <div class=input_section>
-                        <input type="submit" class="btn btn-success" name="register" value="Register" >
+                        <div class="input_body d-flex justify-content-center">
+                            <input type="submit" class="btn btn-success" name="register" value="Register" >
+                            <p class="ml-3 mt-3">Already Have An Account? <a href="{{route('login')}}">Login</a></p>
+                     </div>
                     </div>
                     <div>
                </form>
