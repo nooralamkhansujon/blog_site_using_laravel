@@ -29,6 +29,6 @@ Route::group([],function(){
    //login and register route
    Route::get('/login','Auth\LoginController@showLoginForm')->name('login');
    Route::post('/login','Auth\LoginController@login')->name('login.submit');
-   Route::get('register','Auth\LoginController@RegisterForm')->name('register');
+   Route::get('/register','Auth\RegisterController@ShowRegistionForm')->name('register');
    Route::post('/register','Auth\RegisterController@register')->name('register.submit');
 });

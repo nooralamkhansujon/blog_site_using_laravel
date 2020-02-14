@@ -30,12 +30,9 @@
     <link rel="stylesheet" href="{{asset('css/icomoon.css')}}">
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <script src="{{asset('myjs/jquery-3.2.1.min.js')}}"></script>
-
-
-
   </head>
 
-  <body data-spy="scroll" data-dismiss="modal" data-target=".site-navbar-target" data-offset="300">
+  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 
 
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
@@ -54,67 +51,18 @@
 	          <li class="nav-item"><a href="{{route('blog')}}" class="nav-link"><span>Blog</span></a></li>
               <li class="nav-item"><a href="{{route('contact')}}" class="nav-link"><span>Contact</span></a></li>
               <li class="nav-item">
-                   <a href="#"
-                      data-toggle="modal" data-target="#login_modal" class="nav-link modal_link"><span>Login</span>
-                    </a>
+                   <a href="#" class="nav-link"><span>Login</span></a>
               </li>
               <li class="nav-item">
-                    <a href="#"
-                        data-toggle="modal" data-target="#register_modal" class="nav-link modal_link">
+                    <a href="#" class="nav-link">
                         <span>Register</span>
                     </a>
                </li>
               <li class="nav-item cta ">
-                  <a href="#" class="nav-link modal_link"
-                data-toggle="modal" data-target="#login_modal">Subscribe Us</a>
+                  <a href="#" class="nav-link">Subscribe Us</a>
               </li>
 	       </ul>
 	    </div>
     </nav>
 
-@include('frontend.partials.login_modal')
-@include('frontend.partials.register_modal')
 
-
-<script type="text/javascript">
-
-    //console.log(alert_message);
-    // setInterval(function(){
-    //     // alert_message.style.transform = "translateX(1150px)";
-    //     showModal();
-    // },2000);
-
-    function showAlert(){
-          var alert_message = document.querySelector('.custom_alert');
-          alert_message.style.transform = "translateX(0)";
-    }
-
-    $("#register_form").on('submit',function(event){
-            event.preventDefault();
-
-            console.log(new FormData(this));
-            $.ajax({
-                url     : "{{route('register')}}",
-                data    :  $(this).serialize(),
-                type    : "POST",
-                success:function(data){
-                     if(data.toLowerCase() == 'register')
-                     {
-                        showAlert();
-                     }
-                }
-            });
-    });
-
-    // $("#login_form").on('submit',function(){
-    //         $.ajax({
-    //             url     : "{{route('login')}}",
-    //             type    : "POST",
-    //             dataType: "JSON",
-    //             success:function(data){
-
-    //             }
-    //         });
-    // });
-
- </script>

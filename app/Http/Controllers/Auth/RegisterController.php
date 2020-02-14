@@ -85,4 +85,8 @@ class RegisterController extends Controller
           }
 
     }
+
+    public function ShowRegistionForm(){
+        return view('frontend.register');
+    }
 }

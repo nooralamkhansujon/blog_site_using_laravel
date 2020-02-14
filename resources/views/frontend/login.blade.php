@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{asset('css/bootstrap/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/login_register.css')}}" />
 </head>
 <body>
     <section id="register_section">
         <div class="container">
             <div class="section_body">
-                 <h2 class="text-success ">Please Login For Subscribe</h2>
+                 <h2 class="text-success">Please Login For Subscribe</h2>
                <form action="">
                    <div class="input_section">
                       <label for="">
@@ -20,10 +20,10 @@
                        <input type="text" name="name" placeholder="Enter Your Name">
                    </div>
                    <div class="input_section">
-                       <label for="" class="section_label">
+                       <label for="name" class="section_label">
                            Email
                         </label>
-                        <input type="text" name="name" placeholder="Enter Your Email">
+                        <input type="text" id="name" name="name" placeholder="Enter Your Name">
                     </div>
                     <div class="input_section">
                        <label for="" class="section_label">
