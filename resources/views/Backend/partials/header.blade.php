@@ -7,7 +7,7 @@
     <meta name="generator" content="Jekyll v3.8.6">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link  rel="stylesheet"  href="{{asset('admin_css/bootstrap.min.css')}}"/>
-
+    <script  src="{{asset('js/jquery.min.js')}}"></script>
     <style>
         .bd-placeholder-img {
           font-size: 1.125rem;

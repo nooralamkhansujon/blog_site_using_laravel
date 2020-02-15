@@ -40,5 +40,8 @@ Route::group([],function(){
    Route::get('/admin','Backend\AdminController@dashboard')->name('dashboard');
 
    //blog routes
+   Route::get('/blog/restore/{id}','BlogController@restore')->name('blog.restore');
+   Route::get('/blog/force_delete/{id}','BlogController@force_delete')->name('blog.force_delete');
+   Route::get('/blog/trashed','BlogController@trashed')->name('blog.trashed');
    Route::resource('/blogpost','BlogController');
 });

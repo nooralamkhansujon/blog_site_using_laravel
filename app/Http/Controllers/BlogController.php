@@ -19,6 +19,11 @@ class BlogController extends Controller
        return view('backend.blog.index',compact('blogs'));
     }
 
+    public function trashed(){
+        $blogs = Blog::onlyTrashed()->get();
+        return view('backend.blog.index',compact('blogs'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -39,8 +44,8 @@ class BlogController extends Controller
     {
     //    dd($request->all());
        $this->validate($request,[
-             'title'      =>'required|max:150|string',
-             'slug'       =>'required',
+             'title'      =>'required|max:150|string|unique:blogs,title',
+             'slug'       =>'required|max:150|string|unique:blogs,slug',
              'author'     =>'required|max:80',
              'description'=>'required',
              'image'      =>'required|mimes:jpeg,png,jpg|image'
@@ -60,7 +65,7 @@ class BlogController extends Controller
                 $this->setSuccess('New Blog has been addded Successfully!');
                 return redirect()->route('blogpost.index');
         }
-        $this->setSuccess('New Blog has been addded Successfully!');
+        $this->setError('Error!Something is wrong.');
         return back()->withInput($request->all());
 
     }
@@ -84,9 +89,9 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Blog $blog)
     {
-        //
+        dd($blog);
     }
 
     /**
@@ -109,6 +114,25 @@ class BlogController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //your blog will be trashed
+         $blog    = Blog::find($id);
+        if($blog->delete()){
+            $this->setSuccess('Your Blog has been trashed successfully');
+            return redirect()->route('blog.trashed');
+        }
+        $this->setError('Something is worng! Please Try Again!');
+        return back();
+    }
+
+    public function force_delete(Blog $blog)
+    {
+
+          if($blog->forceDelete())
+          {
+            $this->setSuccess('Your Blog has been trashed successfully');
+            return redirect(route('blog.trashed'));
+          }
+          $this->setError('Something is wrong! please try again!');
+          return back();
     }
 }
