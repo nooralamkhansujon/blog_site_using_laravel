@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Blog;
-use Image;
+use Intervention\Image\Facades\Image;
+
 class BlogController extends Controller
 {
     /**
@@ -14,7 +15,8 @@ class BlogController extends Controller
      */
     public function index()
     {
-       return view('backend.blog.index');
+       $blogs = Blog::orderBy('desc')->get();
+       return view('backend.blog.index',compact('blogs'));
     }
 
     /**
@@ -43,38 +45,39 @@ class BlogController extends Controller
              'description'=>'required',
              'image'      =>'required|mimes:jpeg,png,jpg|image'
        ]);
-       $data = array(
-        'title'=>$request->title,
-        'slug'=>$request->slug,
-        'author'=>$request->author,
-        'description'=>$request->description,
-       );
-       //blog image
-    //    $image           = $request->image->getClientOriginalName();
-    //    $image_extension =        $request->image->getClientOriginalExtension();
-    //    $new_image       = "blog_".uniqid().$image_extension;
+        $image = $this->thumbnail($request,'blog','blog',300,300);
+        $data = array(
+            'title'=>$request->title,
+            'slug'=>$request->slug,
+            'author'=>$request->author,
+            'description'=>$request->description,
+            'image'  =>$image
+        );
 
-    //    $path = $request->file('image')->storeAs(
-    //              'blog/'.$new_image,'public');;
-
-
-       //insert data into blog
-       $blog = Blog::create($data);
-       if($blog){
-             $this->setSuccess('New Blog has been addded Successfully!');
-             return redirect()->route('blog.index');
-       }
-       $this->setSuccess('New Blog has been addded Successfully!');
-       return back()->withInput($request->all());
+        //insert data into blog
+        $blog = Blog::create($data);
+        if($blog){
+                $this->setSuccess('New Blog has been addded Successfully!');
+                return redirect()->route('blog.index');
+        }
+        $this->setSuccess('New Blog has been addded Successfully!');
+        return back()->withInput($request->all());
 
     }
 
-    private function  thumbnail($request,$file_prefix,$folder){
-           $image           = $request->getClientOriginalName();
-           $image_extension = $request->getClientOriginalExtension();
-           $new_image       = $file_prefix.uniqid().$image_extension;
+    private function  thumbnail($request,$file_prefix,$folder,$width,$height){
 
-           $request->file('image')->storeAs($folder.'/'.$new_image,'public');;
+            $image           = $request->file('image')->getClientOriginalName();
+            $image_extension = $request->file('image')->getClientOriginalExtension();
+
+            //make random image name for image
+            $new_image       = $file_prefix.'_'.uniqid().'.'.$image_extension;
+
+            //store image in storage/app/public then given folder
+            $path            = $request->file('image')->storeAs($folder,$new_image,'public');
+            $image           = Image::make(public_path('storage/'.$path))->fit($width,$height);
+            $image->save();
+            return $path;///it return image like folder/file_prefix_5e47f08be439c.jpg
     }
 
     /**
