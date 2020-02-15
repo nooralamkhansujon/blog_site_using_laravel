@@ -38,4 +38,5 @@ Route::group([],function(){
 
 Route::group([],function(){
    Route::get('/admin','Backend\AdminController@dashboard')->name('dashboard');
+//    Route::get('/')
 });
