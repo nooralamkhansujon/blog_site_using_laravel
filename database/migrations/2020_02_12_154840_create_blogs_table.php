@@ -18,7 +18,6 @@ class CreateBlogsTable extends Migration
             $table->string('title');
             $table->text('description');
             $table->string('author');
-            $table->integer('category_id');
             $table->timestamps();
             $table->string('slug');
             $table->softDeletes();

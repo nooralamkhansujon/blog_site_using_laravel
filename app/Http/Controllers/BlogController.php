@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Blog;
+use Image;
 class BlogController extends Controller
 {
     /**
@@ -34,7 +35,46 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        //
+    //    dd($request->all());
+       $this->validate($request,[
+             'title'      =>'required|max:150|string',
+             'slug'       =>'required',
+             'author'     =>'required|max:80',
+             'description'=>'required',
+             'image'      =>'required|mimes:jpeg,png,jpg|image'
+       ]);
+       $data = array(
+        'title'=>$request->title,
+        'slug'=>$request->slug,
+        'author'=>$request->author,
+        'description'=>$request->description,
+       );
+       //blog image
+    //    $image           = $request->image->getClientOriginalName();
+    //    $image_extension =        $request->image->getClientOriginalExtension();
+    //    $new_image       = "blog_".uniqid().$image_extension;
+
+    //    $path = $request->file('image')->storeAs(
+    //              'blog/'.$new_image,'public');;
+
+
+       //insert data into blog
+       $blog = Blog::create($data);
+       if($blog){
+             $this->setSuccess('New Blog has been addded Successfully!');
+             return redirect()->route('blog.index');
+       }
+       $this->setSuccess('New Blog has been addded Successfully!');
+       return back()->withInput($request->all());
+
+    }
+
+    private function  thumbnail($request,$file_prefix,$folder){
+           $image           = $request->getClientOriginalName();
+           $image_extension = $request->getClientOriginalExtension();
+           $new_image       = $file_prefix.uniqid().$image_extension;
+
+           $request->file('image')->storeAs($folder.'/'.$new_image,'public');;
     }
 
     /**
