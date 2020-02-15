@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Blog;
-use Intervention\Image\Facades\Image;
+
 
 class BlogController extends Controller
 {
@@ -45,7 +45,7 @@ class BlogController extends Controller
              'description'=>'required',
              'image'      =>'required|mimes:jpeg,png,jpg|image'
        ]);
-        $image = $this->thumbnail($request,'blog','blog',300,300);
+        $image = $this->thumbnail($request->file('image'),'blog','blog',300,300);
         $data = array(
             'title'=>$request->title,
             'slug'=>$request->slug,
@@ -65,20 +65,7 @@ class BlogController extends Controller
 
     }
 
-    private function  thumbnail($request,$file_prefix,$folder,$width,$height){
 
-            $image           = $request->file('image')->getClientOriginalName();
-            $image_extension = $request->file('image')->getClientOriginalExtension();
-
-            //make random image name for image
-            $new_image       = $file_prefix.'_'.uniqid().'.'.$image_extension;
-
-            //store image in storage/app/public then given folder
-            $path            = $request->file('image')->storeAs($folder,$new_image,'public');
-            $image           = Image::make(public_path('storage/'.$path))->fit($width,$height);
-            $image->save();
-            return $path;///it return image like folder/file_prefix_5e47f08be439c.jpg
-    }
 
     /**
      * Display the specified resource.
