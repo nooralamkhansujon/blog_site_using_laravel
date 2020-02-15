@@ -3,7 +3,7 @@
 @section('content')
     <div class="row">
          <div class="col-md-12">
-                <form action="{{route("blog.store")}}" method="POST" enctype="multipart/form-data">
+                <form action="{{route("blogpost.store")}}" method="POST" enctype="multipart/form-data">
                        @csrf
                        <div class="form-group">
                            <label for="title" class="form-input-label">Title *</label>

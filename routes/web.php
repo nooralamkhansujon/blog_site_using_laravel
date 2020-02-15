@@ -18,21 +18,21 @@ use Illuminate\Support\Facades\Auth;
 
 // Auth::routes();
 
-// Route::group([],function(){
-//    Route::get('/','Frontend\HomeController@index')->name('home');
-//    Route::get('/about','Frontend\HomeController@about')->name('about');
-//    Route::get('/blog','Frontend\HomeController@blog')->name('blog');
-//    Route::get('/contact','Frontend\HomeController@contact')->name('contact');
-//    Route::get('/portfolio','Frontend\HomeController@portfolio')->name('portfolio');
-//    Route::get('/project','Frontend\HomeController@project')->name('project');
+Route::group([],function(){
+   Route::get('/','Frontend\HomeController@index')->name('home');
+   Route::get('/about','Frontend\HomeController@about')->name('about');
+   Route::get('/blog','Frontend\HomeController@blog')->name('blog');
+   Route::get('/contact','Frontend\HomeController@contact')->name('contact');
+   Route::get('/portfolio','Frontend\HomeController@portfolio')->name('portfolio');
+   Route::get('/project','Frontend\HomeController@project')->name('project');
 
-//    //login and register route
-//    Route::get('/login','Auth\LoginController@showLoginForm')->name('login');
-//    Route::post('/login','Auth\LoginController@login')->name('login.submit');
-//    Route::post('/logout','Auth\LoginController@logout')->name('logout');
-//    Route::get('/register','Auth\RegisterController@ShowRegistionForm')->name('register');
-//    Route::post('/register','Auth\RegisterController@register')->name('register.submit');
-// });
+   //login and register route
+   Route::get('/login','Auth\LoginController@showLoginForm')->name('login');
+   Route::post('/login','Auth\LoginController@login')->name('login.submit');
+   Route::post('/logout','Auth\LoginController@logout')->name('logout');
+   Route::get('/register','Auth\RegisterController@ShowRegistionForm')->name('register');
+   Route::post('/register','Auth\RegisterController@register')->name('register.submit');
+});
 
 
 
@@ -40,5 +40,5 @@ Route::group([],function(){
    Route::get('/admin','Backend\AdminController@dashboard')->name('dashboard');
 
    //blog routes
-   Route::resource('/blog','BlogController');
+   Route::resource('/blogpost','BlogController');
 });

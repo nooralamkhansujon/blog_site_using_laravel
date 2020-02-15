@@ -15,8 +15,8 @@
            </a>
            <div class="dropdown-menu">
            <a class="dropdown-item nav-item"
-           href="{{route('blog.create')}}">Add Blog</a>
-           <a class="dropdown-item nav-item" href="{{route('blog.index')}}">Blog List</a>
+           href="{{route('blogpost.create')}}">Add Blog</a>
+           <a class="dropdown-item nav-item" href="{{route('blogpost.index')}}">Blog List</a>
              <a class="dropdown-item nav-item" href="#">Trashed Blog List</a>
            </div>
         </li>

@@ -15,7 +15,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-       $blogs = Blog::orderBy('desc')->get();
+       $blogs = Blog::all();
        return view('backend.blog.index',compact('blogs'));
     }
 
@@ -58,7 +58,7 @@ class BlogController extends Controller
         $blog = Blog::create($data);
         if($blog){
                 $this->setSuccess('New Blog has been addded Successfully!');
-                return redirect()->route('blog.index');
+                return redirect()->route('blogpost.index');
         }
         $this->setSuccess('New Blog has been addded Successfully!');
         return back()->withInput($request->all());
