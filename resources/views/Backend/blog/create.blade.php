@@ -48,7 +48,12 @@
                     </div>
 
                     <div class="form-group">
-                        <input type="submit" name="sumbit" value="Add Blog" class="btn btn-success">
+                        @if(isset($blog))
+                            <input type="submit" name="sumbit" value="EditBlog" class="btn btn-success">
+                        @else
+                            <input type="submit" name="sumbit" value="Add Blog" class="btn btn-success">
+                        @endif
+
                     </div>
                 </form>
          </div>

@@ -98,11 +98,11 @@ class BlogController extends Controller
         //insert data into blog
         $blog = Blog::create($data);
         if($blog){
-            $this->setSuccess('New Blog has been addded Successfully!');
+            $this->setSuccess('New Blog has been added Successfully!');
             return redirect()->route('blogpost.index');
         }
         $this->setError('Error!Something is wrong.');
-        return back()->withInput($request->all());
+        return back()->withInput();
 
     }
 
@@ -192,11 +192,12 @@ class BlogController extends Controller
 
     public function force_delete($id)
     {
-        $blog = Blog::find($id);
+        $blog = Blog::onlyTrashed($id)->where('id',$id)->get()[0];
+
         if($blog->forceDelete())
         {
             $this->setSuccess('Your Blog has been Deleted successfully');
-            return redirect(route('blog.trashed'));
+            return redirect()->route('blog.trashed');
         }
         $this->setError('Something is wrong! please try again!');
         return back();
@@ -209,8 +210,8 @@ class BlogController extends Controller
 
         if($blog->restore())
         {
-            $this->setSuccess('Your Blog has been Deleted successfully');
-            return redirect(route('blog.trashed'));
+            $this->setSuccess('Your Blog has been restore successfully');
+            return redirect()->route('blogpost.index');
         }
         $this->setError('Something is wrong! please try again');
         return back();

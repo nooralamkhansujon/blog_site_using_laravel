@@ -41,7 +41,14 @@ Route::group([],function(){
 
    //blog routes
    Route::get('/blog/restore/{id}','BlogController@restore')->name('blog.restore');
-   Route::get('/blog/force_delete/{id}','BlogController@force_delete')->name('blog.force_delete');
+   Route::delete('/blog/force_delete/{id}','BlogController@force_delete')->name('blog.force_delete');
    Route::get('/blog/trashed','BlogController@trashed')->name('blog.trashed');
    Route::resource('/blogpost','BlogController');
+
+
+   //project routes
+   Route::get('/adminproject/restore/{id}','ProjectController@restore')->name('adminproject.restore');
+   Route::delete('/adminproject/force_delete/{id}','ProjectController@force_delete')->name('adminproject.force_delete');
+   Route::get('/adminproject/trashed','ProjectController@trashed')->name('adminproject.trashed');
+   Route::resource('adminproject', 'ProjectController');
 });

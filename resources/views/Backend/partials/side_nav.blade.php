@@ -27,9 +27,9 @@
                  Project
               </a>
               <div class="dropdown-menu">
-                <a class="dropdown-item nav-item" href="#">Add Project</a>
-                <a class="dropdown-item nav-item" href="#">Project List</a>
-                <a class="dropdown-item nav-item" href="#">Trashed Project List</a>
+                <a class="dropdown-item nav-item" href="{{route('adminproject.create')}}">Add Project</a>
+                <a class="dropdown-item nav-item" href="{{route('adminproject.index')}}">Project List</a>
+                <a class="dropdown-item nav-item" href="{{route('adminproject.trashed')}}">Trashed Project List</a>
               </div>
         </li>
         <li class="nav-item">

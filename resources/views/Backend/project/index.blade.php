@@ -1,15 +1,16 @@
 @extends('backend.app')
-@section('header_title','Blog List')
+@section('header_title','Project List')
 @section('content')
     <div class="row">
          <div class="col-md-12">
                <table class="table table-hover table-responsive-md ">
                  <tr class="bg-success text-light">
                      <th>Sr No</th>
-                     <th>Title</th>
-                     <th>Description</th>
+                     <th>Project Url</th>
+                     <th>Project Title</th>
+                     <th>Project description</th>
+                     <th>Date</th>
                      <th>Image</th>
-                     <th>author</th>
                      <th>Action</th>
                  </tr>
                  @foreach($blogs as $blog)
