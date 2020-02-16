@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\Blog;
-
+use Illuminate\Support\Facades\Validator;
 
 class BlogController extends Controller
 {
@@ -40,30 +41,65 @@ class BlogController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    private function customValidate($request,$id=null){
+
+        $validator = '';
+
+        if($id == null)
+        {
+            $validator = Validator::make($request->all(), [
+                'title'      => 'required|max:150|string|unique:blogs,title',
+                'slug'       => 'required|max:150|string|unique:blogs,slug',
+                'author'     => 'required|max:80',
+                'description'=> 'required',
+                'image'      => 'required|mimes:jpeg,png,jpg|image'
+            ]);
+        }
+        else{
+            $validator = Validator::make($request->all(), [
+                'title'      => ['required','max:150','string', Rule::unique('blogs')->ignore($id)],
+                'slug'       => 'required|max:150|string|unique:blogs,slug',
+                'author'     => 'required|max:80',
+                'description'=> 'required',
+                'image'      => 'required|mimes:jpeg,png,jpg|image'
+            ]);
+        }
+
+        return $validator;
+    }
+
+    private function Blogdata(Request $request,$image)
+    {
+        $data = array(
+            'title'      => $request->title,
+            'slug'       => $request->slug,
+            'author'     => $request->author,
+            'description'=> $request->description,
+            'image'      => $image
+        );
+      return $data;
+    }
     public function store(Request $request)
     {
-    //    dd($request->all());
-       $this->validate($request,[
-             'title'      =>'required|max:150|string|unique:blogs,title',
-             'slug'       =>'required|max:150|string|unique:blogs,slug',
-             'author'     =>'required|max:80',
-             'description'=>'required',
-             'image'      =>'required|mimes:jpeg,png,jpg|image'
-       ]);
+        //validate the request
+        $validator   = $this->customValidate($request);
+
+        if($validator->fails())
+        {
+            return back()->withErrors($validator);
+        }
+
+        // create thumbnail
         $image = $this->thumbnail($request->file('image'),'blog','blog',300,300);
-        $data = array(
-            'title'=>$request->title,
-            'slug'=>$request->slug,
-            'author'=>$request->author,
-            'description'=>$request->description,
-            'image'  =>$image
-        );
+
+        $data = $this->Blogdata($request,$image); //it will return blog data
 
         //insert data into blog
         $blog = Blog::create($data);
         if($blog){
-                $this->setSuccess('New Blog has been addded Successfully!');
-                return redirect()->route('blogpost.index');
+            $this->setSuccess('New Blog has been addded Successfully!');
+            return redirect()->route('blogpost.index');
         }
         $this->setError('Error!Something is wrong.');
         return back()->withInput($request->all());
@@ -104,7 +140,35 @@ class BlogController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        //validate the request
+        $this->customValidate($request,$id);
+
+        //get the value from the database
+        $blog     = Blog::find($id);
+        $image    = $blog->image ;
+        if(isset($request->image))
+        {
+            // create thumbnail and return blog/filename
+            $image = $this->thumbnail($request->file('image'),'blog','blog',300,300);
+        }
+
+        $data = $this->Blogdata($request,$image);//this function will return array of request data
+
+        $blog->title       = $data['title'];
+        $blog->slug        = $data['slug'];
+        $blog->author      = $data['author'];
+        $blog->description = $data['description'];
+        $blog->image       = $data['image'];
+
+        if($blog->save()){
+             $this->setSuccess("Blog has been Updated success");
+             return redirect()->route('blogpost.index');
+        }
+        $this->setError('Error! Blog is not Updated!');
+        return back();
+
+
     }
 
     /**

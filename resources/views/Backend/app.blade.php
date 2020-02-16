@@ -35,6 +35,16 @@
                                 {{session()->get('message')}}
                             </div>
                         @endif
+
+                        @if($errors->any())
+                            <div class="alert alert-{{session()->get('type')}}">
+                                 <ul>
+                                     @foreach($errors->all() as $error)
+                                         <li>{{$error}}</li>
+                                     @endforeach
+                                 </ul>
+                            </div>
+                        @endif
                     </div>
                     <div class="col-md-12">
                       @yield('content')

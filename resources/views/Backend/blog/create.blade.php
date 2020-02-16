@@ -11,8 +11,8 @@
                        <div class="form-group">
                            <label for="title" class="form-input-label">Title *</label>
                        <input type="text" name="title" id="title" class="form-control" value="{{@$blog->title}}"/>
-                           <small>{{env('APP_URL','Nooralamkhan.com')}} <span id="slug"></span></small>
-                           <input style="display:none" type="text" id="slug_id" name="slug" />
+                           <small>{{env('APP_URL','Nooralamkhan.com')}} <span id="slug">{{@$blog->slug}}</span></small>
+                           <input style="display:none" type="text" id="slug_id" name="slug" value="{{@$blog->slug}}" />
                            @if($errors->has('title'))
                                 <span class="text-danger d-block">{{$errors->first('title')}}</span>
                            @endif
@@ -40,8 +40,8 @@
                                 alt="{{@$blog->title}}">
                           </div>
                         @endif
-                        <label for="image" class="form-input-label">Image*</label>
-                        <input type="file" name="image" id="image" class="form-control">
+                        <label for="image" class="form-input-label">Image* </label>
+                        <input type="file" name="image" id="image" class="form-control" />
                         @if($errors->has('image'))
                             <span class="text-danger d-block">{{$errors->first('image')}}</span>
                         @endif
