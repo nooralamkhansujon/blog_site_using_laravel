@@ -24,8 +24,8 @@
                     <td>{{$blog->author}}</td>
 
                     @if($blog->trashed())
-                        <th>
-                            <a href="{{route('blogpost.edit',$blog->id)}}" class="btn btn-success btn-sm">restore</a>
+                        <td>
+                            <a href="{{route('blog.restore',$blog->id)}}" class="btn btn-success btn-sm">restore</a>
                                 ||
                             <a href="{{route('blogpost.destroy',$blog->id)}}" data-id="{{$blog->id}}"
                                 class="btn btn-danger btn-sm blog_force_delete">Delete</a>
@@ -33,9 +33,9 @@
                                 @csrf
                                 @method('DELETE')
                             </form>
-                        </th>
+                        </td>
                     @else
-                        <th>
+                        <td>
                             <a href="{{route('blogpost.edit',$blog->id)}}" class="btn btn-success btn-sm">Edit</a>
                                 ||
                             <a href="{{route('blogpost.destroy',$blog->id)}}" data-id="{{$blog->id}}"
@@ -44,7 +44,7 @@
                                     @csrf
                                     @method('DELETE')
                             </form>
-                        </th>
+                        </td>
                     @endif
                  </tr>
                 @endforeach

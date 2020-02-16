@@ -155,6 +155,7 @@ class BlogController extends Controller
 
         $data = $this->Blogdata($request,$image);//this function will return array of request data
 
+        //update blog data
         $blog->title       = $data['title'];
         $blog->slug        = $data['slug'];
         $blog->author      = $data['author'];
@@ -189,15 +190,30 @@ class BlogController extends Controller
         return back();
     }
 
-    public function force_delete(Blog $blog)
+    public function force_delete($id)
     {
-
-          if($blog->forceDelete())
-          {
+        $blog = Blog::find($id);
+        if($blog->forceDelete())
+        {
             $this->setSuccess('Your Blog has been Deleted successfully');
             return redirect(route('blog.trashed'));
-          }
-          $this->setError('Something is wrong! please try again!');
-          return back();
+        }
+        $this->setError('Something is wrong! please try again!');
+        return back();
+    }
+
+    public function restore($id)
+    {
+        $blog = Blog::onlyTrashed()->where('id',$id)->get()[0];
+        // dd($blog);
+
+        if($blog->restore())
+        {
+            $this->setSuccess('Your Blog has been Deleted successfully');
+            return redirect(route('blog.trashed'));
+        }
+        $this->setError('Something is wrong! please try again');
+        return back();
+
     }
 }
