@@ -89,9 +89,10 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Blog $blog)
+    public function edit($id)
     {
-        dd($blog);
+        $blog = Blog::find($id);
+        return view('backend.blog.create',compact('blog'));
     }
 
     /**
@@ -129,7 +130,7 @@ class BlogController extends Controller
 
           if($blog->forceDelete())
           {
-            $this->setSuccess('Your Blog has been trashed successfully');
+            $this->setSuccess('Your Blog has been Deleted successfully');
             return redirect(route('blog.trashed'));
           }
           $this->setError('Something is wrong! please try again!');
