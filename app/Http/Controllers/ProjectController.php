@@ -69,6 +69,7 @@ class ProjectController extends Controller
 
         $data = array(
             'project_title'      =>   $data['project_title'],
+            'slug'               =>   $data['slug'],
             'project_url'        =>   $data['project_url'],
             'project_description' =>  $data['project_description'],
             'project_image'      =>   $image

@@ -66,9 +66,9 @@
 
                     <div class="form-group">
                         @if(isset($project))
-                            <input type="submit" name="sumbit" value="Edit Blog" class="btn btn-success">
+                            <input type="submit" name="sumbit" value="Edit Project" class="btn btn-success">
                         @else
-                            <input type="submit" name="sumbit" value="Add Blog" class="btn btn-success">
+                            <input type="submit" name="sumbit" value="Add Project" class="btn btn-success">
                         @endif
 
                     </div>
