@@ -44,10 +44,15 @@
               </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">
-            <span data-feather="bar-chart-2"></span>
-            Reports
-          </a>
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+               data-toggle="dropdown">
+               <span data-feather="users"></span>
+                   Users
+              </a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item nav-item" href="#">User List</a>
+                <a class="dropdown-item nav-item" href="#"></a>
+              </div>
         </li>
     </ul>
 
