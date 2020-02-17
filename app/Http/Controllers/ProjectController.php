@@ -55,7 +55,7 @@ class ProjectController extends Controller
         $image = $this->thumbnail($request->file('project_image'),'project','project',600,600);
         $data  = $this->projectData($request,$image); //it will return blog data
 
-        //insert data into blog
+        //insert data into Project
         $project = Project::create($data);
         if($project){
             $this->setSuccess('New Project has been added Successfully!');
@@ -132,7 +132,34 @@ class ProjectController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //dd($request);
+        ///validate the data
+        $validator = $this->customValidate($request,$id);
+
+        // if validator fails then
+        if($validator->fails())
+        {
+            return back()->withErrors($validator);
+        }
+
+        $project   =  Project::find($id);
+        $image     =  $project->project_image;
+        if(isset($request->project_image))
+        {
+            // create thumbnail and return blog/filename
+            $image = $this->thumbnail($request->file('project_image'),'project','project',600,600);
+        }
+        $data      = $this->projectData($request,$image);
+        $project   = Project::create($data);
+        if($project){
+            $this->setSuccess('Project has been Update Successfully!');
+            return redirect()->route('adminproject.index');
+        }
+        $this->setError('Error!Something is wrong.');
+        return back()->withInput();
+
+
+
     }
 
     /**
@@ -143,6 +170,42 @@ class ProjectController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //your blog will be trashed
+        $project    = Project::find($id);
+
+        if($project->delete()){
+            $this->setSuccess('Your Project has been trashed successfully');
+            return redirect()->route('adminproject.trashed');
+        }
+        $this->setError('Something is worng! Please Try Again!');
+        return back();
+    }
+
+    public function force_delete($id)
+    {
+        $project = Project::onlyTrashed($id)->where('id',$id)->get()[0];
+
+        if($project->forceDelete())
+        {
+            $this->setSuccess('Your Project has been Deleted successfully');
+            return redirect()->route('adminproject.trashed');
+        }
+        $this->setError('Something is wrong! please try again!');
+        return back();
+    }
+
+    public function restore($id)
+    {
+        $project = Project::onlyTrashed()->where('id',$id)->get()[0];
+        // dd($blog);
+
+        if($project->restore())
+        {
+            $this->setSuccess('Your Project has been restore successfully');
+            return redirect()->route('adminproject.index');
+        }
+        $this->setError('Something is wrong! please try again');
+        return back();
+
     }
 }

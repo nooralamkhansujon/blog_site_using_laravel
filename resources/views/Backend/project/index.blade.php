@@ -1,24 +1,29 @@
 @extends('backend.app')
 @section('header_title','Project List')
+
+@section('add_button')
+    <a href="{{route('adminproject.create')}}" class="btn btn-success bt-lg">Add Project</a>
+@endsection
+
 @section('content')
     <div class="row">
          <div class="col-md-12">
                <table class="table table-hover table-responsive-md ">
                  <tr class="bg-success text-light">
                      <th>Sr No</th>
-                     <th>Project Url</th>
                      <th>Project Title</th>
+                     <th>Project Url</th>
                      <th>Project description</th>
                      <th>Date</th>
                      <th>Image</th>
-                     <th>Action</th>
-                 </tr>
+                    <th>Action</th>
+                </tr>
                  @foreach($projects as $project)
                  <tr>
                      <td>{{$project->id}}</td>
                      <td>{{$project->project_title}}</td>
                      <td>{{$project->project_url}}</td>
-                     <td>{{$project->project_description}}</td>
+                     <td>{{substr($project->project_description,0,100)."..."}}</td>
                     <td>{{$project->created_at->format('j M ,Y')}}</td>
                     <td>
                         <img src="{{asset('storage/'.$project->project_image)}}"

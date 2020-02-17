@@ -1,5 +1,10 @@
 @extends('backend.app')
 @section('header_title','Blog List')
+
+@section('add_button')
+    <a href="{{route('blogpost.create')}}" class="btn btn-success bt-lg">Add Blog</a>
+@endsection
+
 @section('content')
     <div class="row">
          <div class="col-md-12">
