@@ -46,6 +46,7 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
         $validator = $this->customValidate($request);
+
         if($validator->fails())
         {
             return back()->withErrors($validator);

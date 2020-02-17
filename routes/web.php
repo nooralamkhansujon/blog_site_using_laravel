@@ -51,4 +51,8 @@ Route::group([],function(){
    Route::delete('/adminproject/force_delete/{id}','ProjectController@force_delete')->name('adminproject.force_delete');
    Route::get('/adminproject/trashed','ProjectController@trashed')->name('adminproject.trashed');
    Route::resource('adminproject', 'ProjectController');
+
+
+   //message route manageing
+   Route::resource('comments','CommentController');
 });

@@ -11,44 +11,44 @@
                <table class="table table-hover table-responsive-md ">
                  <tr class="bg-success text-light">
                      <th>Sr No</th>
-                     <th>Project Title</th>
-                     <th>Project Url</th>
-                     <th>Project description</th>
-                     <th>Date</th>
+                     <th>Name</th>
+                     <th>Email ID</th>
+                     <th>Subject</th>
+                     <th>message</th>
                      <th>Image</th>
                     <th>Action</th>
                 </tr>
-                 @foreach($projects as $project)
+                 @foreach($contacts as $contact)
                  <tr>
-                     <td>{{$project->id}}</td>
-                     <td>{{$project->project_title}}</td>
-                     <td>{{$project->project_url}}</td>
-                     <td>{{substr($project->project_description,0,100)."..."}}</td>
-                    <td>{{$project->created_at->format('j M ,Y')}}</td>
+                     <td>{{ $contact->id }}</td>
+                     <td>{{ $contact->name }}</td>
+                     <td>{{ $contact->email }}</td>
+                     <td>
+                         {{ $contact->subject }}
+                    </td>
                     <td>
-                        <img src="{{asset('storage/'.$project->project_image)}}"
-                         alt="" width="50px" height="50px" />
-                      </td>
+                        {{ $contact->message }}
+                   </td>
+                    <td>{{$contact->created_at->format('j M ,Y')}}</td>
 
-                    @if($project->trashed())
+                    @if($contact->trashed())
                         <td>
-                            <a href="{{route('adminproject.restore',$project->id)}}" class="btn btn-success btn-sm">restore</a>
+                            <a href="{{route('adminproject.restore',$contact->id)}}" class="btn btn-success btn-sm">restore</a>
                                 ||
-                            <a href="{{route('adminproject.force_delete',$project->id)}}" data-id="{{$project->id}}"
+                            <a href="{{route('adminproject.force_delete',$contact->id)}}" data-id="{{$contact->id}}"
                                 class="btn btn-danger btn-sm project_force_delete">Delete</a>
-                            <form action="{{route('adminproject.force_delete',$project->id)}}"
-                                id="project_force_delete_{{$project->id}}_form" method="POST">
+                            <form action="{{route('adminproject.force_delete',$contact->id)}}"
+                                id="project_force_delete_{{$contact->id}}_form" method="POST">
                                 @csrf
                                 @method('DELETE')
                             </form>
                         </td>
                     @else
                         <td>
-                            <a href="{{route('adminproject.edit',$project->id)}}" class="btn btn-success btn-sm">Edit</a>
-                                ||
                             <a href="{{route('adminproject.destroy',$project->id)}}" data-id="{{$project->id}}"
                                 class="btn btn-danger btn-sm project_delete">Trashed</a>
-                            <form action="{{route('adminproject.destroy',$project->id)}}" id="project_delete_{{$project->id}}_form" method="POST">
+                            <form action="{{route('adminproject.destroy',$project->id)}}" method="POST"
+                            id="project_delete_{{$project->id}}_form" >
                                     @csrf
                                     @method('DELETE')
                             </form>
