@@ -1,9 +1,5 @@
 @extends('backend.app')
-@section('header_title','Project List')
-
-@section('add_button')
-    <a href="{{route('adminproject.create')}}" class="btn btn-success bt-lg">Add Project</a>
-@endsection
+@section('header_title','Message List')
 
 @section('content')
     <div class="row">
@@ -18,37 +14,33 @@
                      <th>Image</th>
                     <th>Action</th>
                 </tr>
-                 @foreach($contacts as $contact)
+                @foreach($contacts as $contact)
                  <tr>
                      <td>{{ $contact->id }}</td>
                      <td>{{ $contact->name }}</td>
                      <td>{{ $contact->email }}</td>
-                     <td>
-                         {{ $contact->subject }}
-                    </td>
-                    <td>
-                        {{ $contact->message }}
-                   </td>
-                    <td>{{$contact->created_at->format('j M ,Y')}}</td>
+                     <td>{{ $contact->subject }}</td>
+                     <td>{{ $contact->message }}</td>
+                     <td>{{$contact->created_at->format('j M ,Y')}} </td>
 
                     @if($contact->trashed())
                         <td>
                             <a href="{{route('adminproject.restore',$contact->id)}}" class="btn btn-success btn-sm">restore</a>
                                 ||
                             <a href="{{route('adminproject.force_delete',$contact->id)}}" data-id="{{$contact->id}}"
-                                class="btn btn-danger btn-sm project_force_delete">Delete</a>
+                                class="btn btn-danger btn-sm contact_force_delete">Delete</a>
                             <form action="{{route('adminproject.force_delete',$contact->id)}}"
-                                id="project_force_delete_{{$contact->id}}_form" method="POST">
+                                id="contact_force_delete_{{$contact->id}}_form" method="POST">
                                 @csrf
                                 @method('DELETE')
                             </form>
                         </td>
                     @else
                         <td>
-                            <a href="{{route('adminproject.destroy',$project->id)}}" data-id="{{$project->id}}"
-                                class="btn btn-danger btn-sm project_delete">Trashed</a>
-                            <form action="{{route('adminproject.destroy',$project->id)}}" method="POST"
-                            id="project_delete_{{$project->id}}_form" >
+                            <a href="{{route('adminproject.destroy',$contact->id)}}" data-id="{{$contact->id}}"
+                                class="btn btn-danger btn-sm contact_delete">Trashed</a>
+                            <form action="{{route('adminproject.destroy',$contact->id)}}" method="POST"
+                            id="contact_delete_{{$contact->id}}_form" >
                                     @csrf
                                     @method('DELETE')
                             </form>
@@ -61,20 +53,20 @@
     </div>
 
     <script type="text/javascript">
-            $(".project_delete").on('click',function(event){
+            $(".contact_delete").on('click',function(event){
                 event.preventDefault();
                 id     = this.dataset.id;
-                form   = $(`#project_delete_${id}_form`);
+                form   = $(`#contact_delete_${id}_form`);
 
                 if(confirm("Are you sure! You want to Trashed this post")){
                      form.submit();
                 }
             });
 
-            $('.project_force_delete').on('click',function(event){
+            $('.contact_force_delete').on('click',function(event){
                   event.preventDefault();
                   id     = this.dataset.id;
-                  form   = $(`#project_force_delete_${id}_form`);
+                  form   = $(`#contact_delete_${$contact->id}_form`);
                   console.log(form);
 
                   if(confirm('Are you sure! you want to Delete This Post'))

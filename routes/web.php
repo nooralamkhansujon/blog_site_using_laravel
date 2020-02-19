@@ -25,6 +25,8 @@ Route::group([],function(){
    Route::get('/contact','Frontend\HomeController@contact')->name('contact');
    Route::get('/portfolio','Frontend\HomeController@portfolio')->name('portfolio');
    Route::get('/project','Frontend\HomeController@project')->name('project');
+   Route::get('/subscribe/{id}','SubscribeController@subscribe')->name('subscribe');
+
 
    //login and register route
    Route::get('/login','Auth\LoginController@showLoginForm')->name('login');
@@ -33,6 +35,9 @@ Route::group([],function(){
    Route::get('/register','Auth\RegisterController@ShowRegistionForm')->name('register');
    Route::post('/register','Auth\RegisterController@register')->name('register.submit');
 });
+
+
+
 
 
 
@@ -54,5 +59,13 @@ Route::group([],function(){
 
 
    //message route manageing
-   Route::resource('comments','CommentController');
+   Route::get('/admincontact/restore/{id}','ProjectController@restore')->name('adminproject.restore');
+
+   Route::delete('/admincontact/force_delete/{id}','ProjectController@force_delete')->name('adminproject.force_delete');
+
+   Route::get('/admincontact/trashed','ProjectController@trashed')->name('adminproject.trashed');
+
+   Route::resource('admincomment','CommentController');
+
+
 });

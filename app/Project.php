@@ -15,10 +15,5 @@ class Project extends Model
         return ucfirst($value);
     }
 
-    // public function getProjectDescriptionAttribute($value){
-    //     return substr($value,0,50)."...";
-    // }
-    // public function getCreatedAtAttribute($value){
-    //     return $value;
-    // }
+
 }

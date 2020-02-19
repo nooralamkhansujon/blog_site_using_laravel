@@ -127,5 +127,33 @@
     </script> --}}
 
 
+    <script defer  type="text/javascript">
+              $('.subscribe').on('click',function(){
+                    let authuser_id = this.dataset.authuser;
+                    // console.log(authuser_id);
+
+                    if(authuser_id == 0 ){
+                          alert('Please login to subscribe');
+                          location.href="{{route('login')}}";
+                    }
+                    else if(authuser_id > 0){
+                        //  console.log("you have data  as a user "+authuser_id);
+
+                         $.ajax({
+                             url    : "{{route('subscribe',auth()->user()->id)}}",
+                             type   : "GET",
+                             success: function(data){
+                                   alert(data);
+                             }
+
+
+                         })
+                    }
+
+              });
+
+    </script>
+
+
  </body>
 </html>

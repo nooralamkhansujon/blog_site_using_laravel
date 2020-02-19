@@ -10,7 +10,9 @@
                                 I am Web Developer.I love developing.Also, I am junior wordpress theme developer.
                                 I am not expert designer but, I have knowldge of HTML,CSS,JAVASCRIPT,JQUERY,BOOTSTRAP.
                             </p>
-                            <p><a href="#" class="btn btn-primary py-3 px-4">Subscribe Us</a></p>
+
+                            <p><a href="#" class="btn btn-primary py-3 px-4 subscribe"
+                                data-authuser="{{(Auth()->user())?Auth()->user()->id:0}}" >Subscribe Us</a></p>
                         </div>
                 </div>
         </div>

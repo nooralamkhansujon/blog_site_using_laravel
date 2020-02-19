@@ -51,7 +51,6 @@ class ProjectController extends Controller
         {
             return back()->withErrors($validator);
         }
-
         //create thumnail
         $image = $this->thumbnail($request->file('project_image'),'project','project',600,600);
         $data  = $this->projectData($request,$image); //it will return blog data
@@ -85,8 +84,8 @@ class ProjectController extends Controller
         if($id == null)
         {
             $validator = Validator::make($request->all(), [
-                'project_title'       => ['required','max:150','string'],
-                'project_url'         => ['required','max:150','url','unique:projects,project_url'],
+                'project_title'     => ['required','max:150','string'],
+                'project_url'       => ['required','max:150','url','unique:projects,project_url'],
                 'project_description' => 'required',
                 'project_image'       => 'required|mimes:jpeg,png,jpg|image'
             ]);
@@ -133,7 +132,7 @@ class ProjectController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //dd($request);
+
         ///validate the data
         $validator = $this->customValidate($request,$id);
 
@@ -145,6 +144,7 @@ class ProjectController extends Controller
 
         $project   =  Project::find($id);
         $image     =  $project->project_image;
+
         if(isset($request->project_image))
         {
             // create thumbnail and return blog/filename
@@ -156,11 +156,8 @@ class ProjectController extends Controller
             $this->setSuccess('Project has been Update Successfully!');
             return redirect()->route('adminproject.index');
         }
-        $this->setError('Error!Something is wrong.');
+        $this->setError('Error! Something is Wrong.');
         return back()->withInput();
-
-
-
     }
 
     /**

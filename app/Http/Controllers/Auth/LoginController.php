@@ -43,23 +43,25 @@ class LoginController extends Controller
     {
         //validate the data
         $this->validate($request,[
-             $this->username()  => 'required|string',
+             $this->username()   => 'required|string',
              'password'          => 'required|string',
         ]);
+
         //log the user in
         $data = [
             'email'    => $request->email,
             'password' => $request->password
         ];
+
         //Attempt to log the user in
         if(Auth::attempt($data,$request->remember)){
             //if successful, then redirect to their intended location
             $this->setSuccess("You are login successfully!");
             return redirect()->intended(route('home'));
         }
-         //if unsuccessfull then redirect back to the login with  the form data
-         $this->setError('Error! Something is wrong Please Try again');
-         return redirect()->back()->withInput($request->only('email','remember'));
+        //if unsuccessfull then redirect back to the login with  the form data
+        $this->setError('Error! Something is wrong Please Try again');
+        return redirect()->back()->withInput($request->only('email','remember'));
     }
 
     public function showLoginForm(){
