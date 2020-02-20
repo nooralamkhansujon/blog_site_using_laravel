@@ -43,6 +43,8 @@ Route::group([],function(){
 
 Route::group([],function(){
    Route::get('/admin','Backend\AdminController@dashboard')->name('dashboard');
+   Route::get('/admin/login','Backend\AdminController@dashboard')->name('admin.login');
+
 
    //blog routes
    Route::get('/blog/restore/{id}','BlogController@restore')->name('blog.restore');
@@ -60,11 +62,8 @@ Route::group([],function(){
 
    //message route manageing
    Route::get('/admincontact/restore/{id}','ProjectController@restore')->name('adminproject.restore');
-
    Route::delete('/admincontact/force_delete/{id}','ProjectController@force_delete')->name('adminproject.force_delete');
-
    Route::get('/admincontact/trashed','ProjectController@trashed')->name('adminproject.trashed');
-
    Route::resource('admincomment','CommentController');
 
 

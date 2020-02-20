@@ -47,6 +47,10 @@ class User extends Authenticatable
         return $this->role_id == 1;
     }
 
+    public function isUser(){
+        return $this->role_id == 2;
+    }
+
     public function isSubscribe(){
         $subscribe = Subscribe::find($this->id);
         return $subscribe > 0;

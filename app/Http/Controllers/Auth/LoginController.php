@@ -68,6 +68,10 @@ class LoginController extends Controller
         return view('frontend.login');
     }
 
+    public function adminLogin(){
+
+    }
+
     public function logout()
     {
         Auth::guard('web')->logout();
