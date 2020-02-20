@@ -133,21 +133,21 @@
                     // console.log(authuser_id);
 
                     if(authuser_id == 0 ){
-                          alert('Please login to subscribe');
                           location.href="{{route('login')}}";
+                          alert('Please login to subscribe');
                     }
+
                     else if(authuser_id > 0){
-                        //  console.log("you have data  as a user "+authuser_id);
 
                          $.ajax({
-                             url    : "{{route('subscribe',auth()->user()->id)}}",
+                             url    : "{{url('subscribe')}}/"+authuser_id,
                              type   : "GET",
                              success: function(data){
                                    alert(data);
                              }
 
 
-                         })
+                         });
                     }
 
               });

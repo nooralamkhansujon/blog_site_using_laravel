@@ -20,6 +20,7 @@ class SubscribeController extends Controller
 
     public function subscribe(int $id){
 
+        dd($id);
             //first check if the user already subscribe  or not
             // $subscribe = Subscribe::find($id);
 

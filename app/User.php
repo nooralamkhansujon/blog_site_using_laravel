@@ -7,6 +7,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Subscribe;
+use App\Rule;
 
 class User extends Authenticatable
 {
@@ -54,5 +55,9 @@ class User extends Authenticatable
     public function isSubscribe(){
         $subscribe = Subscribe::find($this->id);
         return $subscribe > 0;
+    }
+
+    public function Rule(){
+          return $this->belongsTo(Rule::class,'role_id','id');
     }
 }

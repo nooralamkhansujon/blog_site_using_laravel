@@ -39,32 +39,31 @@ Route::group([],function(){
 
 
 
-
-
-Route::group([],function(){
-   Route::get('/admin','Backend\AdminController@dashboard')->name('dashboard');
-   Route::get('/admin/login','Backend\AdminController@dashboard')->name('admin.login');
+Route::group(['prefix'=> 'admin'],function(){
+   Route::get('/','Backend\AdminController@dashboard')->name('dashboard')->middleware('admin');
+   Route::get('/login','Auth\AdminLoginController@adminShowLoginForm')->name('admin.login');
+   Route::post('/login','Auth\AdminLoginController@adminLogin')->name('admin.login.submit');
 
 
    //blog routes
-   Route::get('/blog/restore/{id}','BlogController@restore')->name('blog.restore');
-   Route::delete('/blog/force_delete/{id}','BlogController@force_delete')->name('blog.force_delete');
-   Route::get('/blog/trashed','BlogController@trashed')->name('blog.trashed');
-   Route::resource('/blogpost','BlogController');
+   Route::get('/blog/restore/{id}','BlogController@restore')->name('blog.restore')->middleware('admin');
+   Route::delete('/blog/force_delete/{id}','BlogController@force_delete')->name('blog.force_delete')->middleware('admin');
+   Route::get('/blog/trashed','BlogController@trashed')->name('blog.trashed')->middleware('admin');;
+   Route::resource('/blogpost','BlogController')->middleware('admin');;
 
 
    //project routes
-   Route::get('/adminproject/restore/{id}','ProjectController@restore')->name('adminproject.restore');
-   Route::delete('/adminproject/force_delete/{id}','ProjectController@force_delete')->name('adminproject.force_delete');
-   Route::get('/adminproject/trashed','ProjectController@trashed')->name('adminproject.trashed');
-   Route::resource('adminproject', 'ProjectController');
+   Route::get('/adminproject/restore/{id}','ProjectController@restore')->name('adminproject.restore')->middleware('admin');
+   Route::delete('/adminproject/force_delete/{id}','ProjectController@force_delete')->name('adminproject.force_delete')->middleware('admin');
+   Route::get('/adminproject/trashed','ProjectController@trashed')->name('adminproject.trashed')->middleware('admin');
+   Route::resource('adminproject', 'ProjectController')->middleware('admin');
 
 
    //message route manageing
-   Route::get('/admincontact/restore/{id}','ProjectController@restore')->name('adminproject.restore');
-   Route::delete('/admincontact/force_delete/{id}','ProjectController@force_delete')->name('adminproject.force_delete');
-   Route::get('/admincontact/trashed','ProjectController@trashed')->name('adminproject.trashed');
-   Route::resource('admincomment','CommentController');
+   Route::get('/admincontact/restore/{id}','ProjectController@restore')->name('adminproject.restore')->middleware('admin');
+   Route::delete('/admincontact/force_delete/{id}','ProjectController@force_delete')->name('adminproject.force_delete')->middleware('admin');
+   Route::get('/admincontact/trashed','ProjectController@trashed')->name('adminproject.trashed')->middleware('admin');
+   Route::resource('admincomment','CommentController')->middleware('admin');
 
 
 });
