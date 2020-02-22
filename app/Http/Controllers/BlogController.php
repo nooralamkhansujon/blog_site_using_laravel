@@ -9,11 +9,9 @@ use Illuminate\Support\Facades\Validator;
 
 class BlogController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+
+    //admin route function
     public function index()
     {
        $blogs = Blog::all();
@@ -25,23 +23,10 @@ class BlogController extends Controller
         return view('backend.blog.index',compact('blogs'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('backend.blog.create');
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-
     private function customValidate($request,$id=null){
 
         $validator = '';
@@ -107,18 +92,6 @@ class BlogController extends Controller
     }
 
 
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -131,13 +104,19 @@ class BlogController extends Controller
         return view('backend.blog.create',compact('blog'));
     }
 
+
+
+
     /**
-     * Update the specified resource in storage.
+     * Display the specified resource.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function show($id)
+    {
+        //
+    }
     public function update(Request $request, $id)
     {
 
@@ -171,17 +150,10 @@ class BlogController extends Controller
 
 
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //your blog will be trashed
-         $blog    = Blog::find($id);
+        $blog    = Blog::find($id);
         if($blog->delete()){
             $this->setSuccess('Your Blog has been trashed successfully');
             return redirect()->route('blog.trashed');
@@ -206,7 +178,6 @@ class BlogController extends Controller
     public function restore($id)
     {
         $blog = Blog::onlyTrashed()->where('id',$id)->get()[0];
-        // dd($blog);
 
         if($blog->restore())
         {
@@ -215,6 +186,6 @@ class BlogController extends Controller
         }
         $this->setError('Something is wrong! please try again');
         return back();
-
     }
+    // end of admin route section
 }

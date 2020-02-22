@@ -53,8 +53,8 @@ class User extends Authenticatable
     }
 
     public function isSubscribe(){
-        $subscribe = Subscribe::find($this->id);
-        return $subscribe > 0;
+        $subscribe = Subscribe::where('user_id',$this->id)->get();
+        return count($subscribe) > 0;
     }
 
     public function Rule(){

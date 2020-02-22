@@ -11,13 +11,25 @@
                                 I am not expert designer but, I have knowldge of HTML,CSS,JAVASCRIPT,JQUERY,BOOTSTRAP.
                             </p>
 
-                            <p><a href="#" class="btn btn-primary py-3 px-4 subscribe"
-                                data-authuser="{{(Auth()->user())?Auth()->user()->id:0}}" >Subscribe Us</a></p>
+                            <p>
+                                @if(auth()->user())
+                                    @if(auth()->user()->isSubscribe())
+                                        <a href="#" class="nav-link"
+                                        style="width:150px;border-radius:5px;cursor:not-allowed;background:#fff;color:black;">Subscribed</a>
+                                    @else
+                                        <a href="#" class="btn btn-primary py-3 px-4 subscribe"
+                                           data-authuser="{{auth()->user()->id}}">Subscribe Us</a>
+
+                                    @endif
+                                @else
+                                     <a href="#" class="btn btn-primary py-3 px-4 subscribe"
+                                     data-authuser="{{(auth()->user())?Auth()->user()->id:0}}">Subscribe Us</a>
+                                @endif
+                            </p>
                         </div>
                 </div>
         </div>
 </section>
-
 
 
 
@@ -44,7 +56,7 @@
                           <div class="icon d-flex justify-content-center align-items-center">
                               <span class="flaticon-handshake"></span>
                           </div>
-                        <strong class="number" data-number="10000">0</strong>
+                        <strong class="number" data-number="{{config('total_subscribers')}}"></strong>
                         <span>Total Subscriber</span>
                       </div>
                     </div>

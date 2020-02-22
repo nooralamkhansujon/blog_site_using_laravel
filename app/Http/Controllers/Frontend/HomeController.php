@@ -35,8 +35,7 @@ class HomeController extends Controller
         return view('frontend.project',compact('projects'));
     }
 
-    public function project_details($id){
-        $project = Project::find($id);
-        // return view()
+    public function project_details(Project $project){
+        return view('frontend.project_details',compact('project'));
     }
 }

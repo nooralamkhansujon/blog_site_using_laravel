@@ -25,8 +25,8 @@ Route::group([],function(){
    Route::get('/contact','Frontend\HomeController@contact')->name('contact');
    Route::get('/portfolio','Frontend\HomeController@portfolio')->name('portfolio');
    Route::get('/project','Frontend\HomeController@project')->name('project');
-   Route::get('/subscribe/{id}','SubscribeController@subscribe')->name('subscribe');
-
+   Route::get('/project/{project}','Frontend\HomeController@project_details')->name('project.details');
+   Route::get('/subscribe/{authuser_id}','SubscribeController@subscribe')->name('subscribe');
 
    //login and register route
    Route::get('/login','Auth\LoginController@showLoginForm')->name('login');
@@ -43,6 +43,7 @@ Route::group(['prefix'=> 'admin'],function(){
    Route::get('/','Backend\AdminController@dashboard')->name('dashboard')->middleware('admin');
    Route::get('/login','Auth\AdminLoginController@adminShowLoginForm')->name('admin.login');
    Route::post('/login','Auth\AdminLoginController@adminLogin')->name('admin.login.submit');
+   Route::post('/logout','Auth\AdminLoginController@adminLogout')->name('admin.logout.submit');
 
 
    //blog routes

@@ -39,11 +39,21 @@
 </head>
 <body>
     <div id="app">
+
        <form action="{{route('admin.login.submit')}}" method="POST">
              @csrf
              <div>
                  <h2 class="text-success">Admin Login</h2>
              </div>
+             <div class="row">
+                <div class="col-md-12">
+                    @if(session()->has('message'))
+                    <div class="alert alert-{{session()->get('type')}}">
+                            {{session()->get('message')}}
+                        </div>
+                    @endif
+                </div>
+           </div>
             <div class="form-group">
                 <label for="email"> Email</label>
                 <input type="text" id="email" class="form-control" name='email' placeholder="Enter Your Email">
@@ -73,7 +83,7 @@
             <div class="form-group">
                 <div class="d-flex justify-content-center">
                     <input type="submit" class="btn btn-success" name="login" value="Login" >
-                    <p class="ml-3 mt-3">Need An Account? <a href="{{route('register')}}">Register</a></p>
+                    <p class="ml-3 mt-3">forget your password? <a href="#">Reset Your password</a></p>
                 </div>
             </div>
         </form>

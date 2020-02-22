@@ -18,20 +18,23 @@ class SubscribeController extends Controller
 
     }
 
-    public function subscribe(int $id){
+    public function subscribe($authuser_id){
 
-        dd($id);
-            //first check if the user already subscribe  or not
-            // $subscribe = Subscribe::find($id);
+        //first check if the user already subscribe  or not
+        $subscribe = Subscribe::where('user_id',$authuser_id)->get();
 
-        //     if($subscribe){
-        //         $this->setSuccess("You already ")
-        //     }
-        //     $subscribe = Subscribe::create(['user_id' => auth()->user()->id]);
-
-        //    $this->setSuccess('')
-
-
+        // if user already subscribed then
+        if(count($subscribe) > 0){
+             echo "You already subscribed";
+        }
+        else{
+            $subscribe          = new Subscribe();
+            $subscribe->user_id = $authuser_id;
+            $subscribe->save();
+            if($subscribe){
+                echo "thanks for subscribe";
+            }
+        }
     }
 
     /**

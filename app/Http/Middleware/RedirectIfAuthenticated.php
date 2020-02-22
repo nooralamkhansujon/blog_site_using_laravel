@@ -19,11 +19,20 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
 
-        //dd($request->user()->role_id);
+        if($guard == 'logout'){
+            return $next($request);
+        }
+        elseif(Auth::check()){
 
-        if(Auth::check()){
-            // $user = User::find($request->user()->id);
-            return redirect()->intended(route('home'));
+            $user = User::find($request->user()->id);
+
+            if(strtolower($user->role->name) == 'admin'){
+                return redirect()->route('dashboard');
+            }
+            elseif(strtolower($user->role->name) == 'user')
+            {
+                return redirect()->route('home');
+            }
         }
         //dd($request);
         return $next($request);

@@ -7,6 +7,9 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Intervention\Image\Facades\Image;
+use App\Subscribe;
+use Illuminate\Support\Facades\Config;
+
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
@@ -31,4 +34,13 @@ class Controller extends BaseController
         $image->save();
         return $path;///it return image like folder/file_prefix_5e47f08be439c.jpg
     }
+
+    public function __construct()
+    {
+
+        $total_subscribers = count(Subscribe::all());
+        Config::set('total_subscribers',  $total_subscribers);
+    }
+
+
 }
