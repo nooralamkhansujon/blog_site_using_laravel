@@ -9,17 +9,19 @@
       <div class="container">
         <div class="row">
            <div class="col-md-12">
-               <h2 class="text-success">Project Datails</h2>
+               <h2 class="text-success">Blog Datails</h2>
            </div>
           <div class="col-lg-8 ftco-animate">
-            <img src="{{asset('storage/'.$project->project_image)}}" alt="" class="img-fluid">
-            <h2 class="mb-3 mt-5 text-success">{{$project->project_title}}</h2>
-            <p class="lead">{{$project->project_description}}</p>
+             <img style="width:100%;" src="{{asset('storage/'.$blog->image)}}" alt="{{$blog->title}}" class="img-fluid">
+             <h2 class="mb-3 mt-5 text-success">{{$blog->title}}</h2>
+             <p class="lead">{{$blog->description}}</p>
 
 
             <div class="pt-5 mt-5">
               <h3 class="mb-5">6 Comments</h3>
+
                @include('frontend.partials.comment_list')
+
               <div class="comment-form-wrap pt-5">
                 <h3 class="mb-5">Leave a comment</h3>
                 <form action="#" class="p-5 bg-light">
