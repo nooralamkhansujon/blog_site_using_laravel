@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Project;
 
 class HomeController extends Controller
 {
@@ -24,10 +25,18 @@ class HomeController extends Controller
         return view('frontend.contact');
     }
     public function portfolio(){
+
+
        return view('frontend.portfolio');
     }
 
     public function project(){
-        return view('frontend.project');
+        $projects = Project::all();
+        return view('frontend.project',compact('projects'));
+    }
+
+    public function project_details($id){
+        $project = Project::find($id);
+        // return view()
     }
 }
