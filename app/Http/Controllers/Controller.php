@@ -7,8 +7,9 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Intervention\Image\Facades\Image;
-use App\Subscribe;
 use Illuminate\Support\Facades\Config;
+use App\Subscribe;
+use App\Project;
 
 class Controller extends BaseController
 {
@@ -37,9 +38,10 @@ class Controller extends BaseController
 
     public function __construct()
     {
-
         $total_subscribers = count(Subscribe::all());
+        $total_projects    = count(Project::all());
         Config::set('total_subscribers',  $total_subscribers);
+        Config::set('total_projects',$total_projects);
     }
 
 

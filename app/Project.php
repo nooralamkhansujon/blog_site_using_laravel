@@ -15,6 +15,11 @@ class Project extends Model
         return ucfirst($value);
     }
 
+    public function comments()
+    {
+        return $this->morphMany('App\Comment', 'commentable');
+    }
+
     public function getRouteKeyName()
     {
         return "slug";

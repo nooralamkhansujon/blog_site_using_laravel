@@ -22,6 +22,7 @@ Route::group([],function(){
    Route::get('/','Frontend\HomeController@index')->name('home');
    Route::get('/about','Frontend\HomeController@about')->name('about');
    Route::get('/blog','Frontend\HomeController@blog')->name('blog');
+   Route::get('/blog/{blog}','Frontend\HomeController@blogDetails')->name('blog.details');
    Route::get('/contact','Frontend\HomeController@contact')->name('contact');
    Route::get('/portfolio','Frontend\HomeController@portfolio')->name('portfolio');
    Route::get('/project','Frontend\HomeController@project')->name('project');

@@ -67,7 +67,8 @@
                           <div class="icon d-flex justify-content-center align-items-center">
                               <span class="flaticon-lawyer"></span>
                           </div>
-                        <strong class="number" data-number="10">0</strong>
+                        <strong class="number"
+                        data-number="{{config('total_projects')}}">0</strong>
                         <span>Developed Project</span>
                       </div>
                     </div>

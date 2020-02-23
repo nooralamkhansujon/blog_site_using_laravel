@@ -12,7 +12,7 @@
                <h2 class="text-success">Project Datails</h2>
            </div>
           <div class="col-lg-8 ftco-animate">
-            <img src="{{asset('storage/'.$project->project_image)}}" alt="" class="img-fluid">
+            <img width="100%" src="{{asset('storage/'.$project->project_image)}}" alt="{{$project->project_title}}" class="img-fluid">
             <h2 class="mb-3 mt-5 text-success">{{$project->project_title}}</h2>
             <p class="lead">{{$project->project_description}}</p>
 

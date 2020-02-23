@@ -119,10 +119,8 @@ class BlogController extends Controller
     }
     public function update(Request $request, $id)
     {
-
         //validate the request
         $this->customValidate($request,$id);
-
         //get the value from the database
         $blog     = Blog::find($id);
         $image    = $blog->image ;
@@ -131,9 +129,7 @@ class BlogController extends Controller
             // create thumbnail and return blog/filename
             $image = $this->thumbnail($request->file('image'),'blog','blog',300,300);
         }
-
-        $data = $this->Blogdata($request,$image);//this function will return array of request data
-
+        $data              = $this->Blogdata($request,$image);//this function will return array of request data
         //update blog data
         $blog->title       = $data['title'];
         $blog->slug        = $data['slug'];

@@ -38,8 +38,7 @@
                       <ul class="children">
                         <li class="comment">
                           <div class="vcard bio">
-                            <img
-                                src="{{asset('images/person_1.jpg')}}" alt="Image placeholder">
+                            <img src="{{asset('images/person_1.jpg')}}" alt="Image placeholder">
                           </div>
                           <div class="comment-body">
                             <h3>John Doe</h3>

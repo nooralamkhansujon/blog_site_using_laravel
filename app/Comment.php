@@ -11,9 +11,7 @@ class Comment extends Model
     protected $guarded =[];
 
 
-    public function comment()
-    {
-        return $this->hasOne(\App\Comment::class,'parent_id','id');
+    public function commentable(){
+        return $this->morphTo();
     }
-
 }

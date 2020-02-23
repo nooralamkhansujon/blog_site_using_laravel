@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Project;
+use App\Blog;
 
 class HomeController extends Controller
 {
@@ -18,15 +19,19 @@ class HomeController extends Controller
     }
 
     public function blog(){
-         return view('frontend.blog');
+         $blogs = Blog::orderBy('id','desc')->limit(3)->get();
+         return view('frontend.blog',compact('blogs'));
+    }
+
+    public function blogDetails(Blog $blog){
+
+        return view('frontend.blog_details',compact('blog'));
     }
 
     public function contact(){
         return view('frontend.contact');
     }
     public function portfolio(){
-
-
        return view('frontend.portfolio');
     }
 

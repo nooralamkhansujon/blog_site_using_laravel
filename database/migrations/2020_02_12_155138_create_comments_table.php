@@ -19,7 +19,9 @@ class CreateCommentsTable extends Migration
             $table->integer('commentable_id');
             $table->integer('commentable_type');
             $table->text('comment');
-            $table->integer('parent_id')->default(0);
+            $table->string('name');
+            $table->string('email');
+            $table->string('website');
             $table->timestamps();
             $table->softDeletes();
         });
