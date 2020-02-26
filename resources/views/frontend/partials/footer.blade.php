@@ -128,7 +128,7 @@
 
 
     <script defer  type="text/javascript">
-              $('.subscribe').on('click',function(){
+            $('.subscribe').on('click',function(){
                     let authuser_id = this.dataset.authuser;
                     // console.log(authuser_id);
 
@@ -145,12 +145,10 @@
                              success: function(data){
                                    alert(data);
                              }
-
-
                          });
                     }
 
-              });
+            });
 
     </script>
 

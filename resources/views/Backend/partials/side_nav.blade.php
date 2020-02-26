@@ -39,8 +39,8 @@
                  Contact Message
               </a>
               <div class="dropdown-menu">
-                <a class="dropdown-item nav-item" href="#">Message List</a>
-                <a class="dropdown-item nav-item" href="#">Trashed Message</a>
+                    <a class="dropdown-item nav-item" href="{{}}">Message List</a>
+                    <a class="dropdown-item nav-item" href="{{}}">Trashed Message</a>
               </div>
         </li>
         <li class="nav-item">

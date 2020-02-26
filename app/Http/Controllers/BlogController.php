@@ -183,5 +183,7 @@ class BlogController extends Controller
         $this->setError('Something is wrong! please try again');
         return back();
     }
+
+
     // end of admin route section
 }

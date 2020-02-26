@@ -10,6 +10,7 @@ use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Config;
 use App\Subscribe;
 use App\Project;
+use App\Comment;
 
 class Controller extends BaseController
 {

@@ -11,10 +11,9 @@ use Illuminate\Support\Facades\Auth;
 | contains the "web" middleware group. Now create something great!
 |
 */
+use App\Blog;
+use App\Reply;
 
-// Route::get('/', function () {
-//     return view('frontend.app');
-// });
 
 // Auth::routes();
 
@@ -28,6 +27,10 @@ Route::group([],function(){
    Route::get('/project','Frontend\HomeController@project')->name('project');
    Route::get('/project/{project}','Frontend\HomeController@project_details')->name('project.details');
    Route::get('/subscribe/{authuser_id}','SubscribeController@subscribe')->name('subscribe');
+
+   //route for blog comment
+   Route::post('/comment','Frontend\HomeController@comment')->name('comment.submit');
+   Route::post('/reply','Frontend\HomeController@reply')->name('reply.submit');
 
    //login and register route
    Route::get('/login','Auth\LoginController@showLoginForm')->name('login');
@@ -66,6 +69,8 @@ Route::group(['prefix'=> 'admin'],function(){
    Route::delete('/admincontact/force_delete/{id}','ProjectController@force_delete')->name('adminproject.force_delete')->middleware('admin');
    Route::get('/admincontact/trashed','ProjectController@trashed')->name('adminproject.trashed')->middleware('admin');
    Route::resource('admincomment','CommentController')->middleware('admin');
+
+//    Route::get('contact/message')->name('')
 
 
 });

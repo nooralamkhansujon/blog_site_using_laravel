@@ -225,8 +225,8 @@ function reply_button($reply){
         replies.forEach((element)=>{
            element.addEventListener('click',function(event){
                 event.preventDefault();
-                comment_id  = this.dataset.comment_id;
-                parent_id   = this.dataset.parent_id;
+                const  comment_id  = this.dataset.comment_id;
+                const  parent_id   = this.dataset.parent_id;
                 // if this is reply has reply_parent dataset property
                 if(this.dataset.reply_parent)
                 {
@@ -256,8 +256,13 @@ function reply_button($reply){
                             type     : "post",
                             data     : {comment_id:comment_id,parent_id:parent_id,textdata:textdata,_token:this._token.value},
                             success  : function(data){
-                                if(data.toLowerCase() == 'ok')
-                                     alert("reply added");
+                                if(data.toLowerCase() == 'ok'){
+                                    let metatag  = document.createElement('meta');
+                                    let head    = document.getElementsByTagName('head')[0];
+                                    metatag.setAttribute('http-equiv','refresh');
+                                    metatag.setAttribute('content',"5");
+                                    head.appendChild(metatag);
+                                }
                             }
                         });
                 });

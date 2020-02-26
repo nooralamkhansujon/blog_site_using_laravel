@@ -35,7 +35,8 @@
           <div class="tab-content pl-lg-4" id="v-pills-tabContent">
             @php $project_id = $projects[0]->id; @endphp
             @foreach($projects as $project)
-                 <div class="tab-pane {{($project->id == $project_id)? 'show  active':'' }}  py-0 py-lg-5" id="v-pills-{{$project->id}}" role="tabpanel"
+                 <div class="tab-pane {{($project->id == $project_id)? 'show  active':'' }}  py-0 py-lg-5"
+                    id="v-pills-{{$project->id}}" role="tabpanel"
                       aria-labelledby="v-pills-{{$project->id}}-tab">
                     <div class="row">
                         <div class="col-md-4 offset-md-1">

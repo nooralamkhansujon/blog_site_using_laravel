@@ -77,13 +77,12 @@
                 <input class="form-check-input" type="checkbox" name="remember"
                 id="remember" {{ old('remember') ? 'checked' : '' }}>
                 <label class="section_label" for="remember">
-                {{ __('Remember Me') }}
+                    {{ __('Remember Me') }}
                 </label>
             </div>
             <div class="form-group">
                 <div class="d-flex justify-content-center">
                     <input type="submit" class="btn btn-success" name="login" value="Login" >
-                    <p class="ml-3 mt-3">forget your password? <a href="#">Reset Your password</a></p>
                 </div>
             </div>
         </form>

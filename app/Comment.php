@@ -16,7 +16,4 @@ class Comment extends Model
         return $this->morphTo();
     }
 
-    public function replies(){
-        return $this->hasMany(Reply::class,'comment_id','id');
-    }
 }

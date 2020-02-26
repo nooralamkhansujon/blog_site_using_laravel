@@ -37,10 +37,15 @@
             justify-content: center;
         }
 
+        .replay_form{
+            display:none;
+        }
+        .show{
+            display:block;
+        }
+
     </style>
   </head>
-
-
 
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
      {{-- custom alert message  --}}

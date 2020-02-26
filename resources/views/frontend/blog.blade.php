@@ -21,23 +21,30 @@
             <div class="col-md-4 d-flex ftco-animate">
                     <div class="blog-entry justify-content-end">
                         <div class="text">
-                        <h3 class="heading "><a class="text-success" href="{{route('blog.details',$blog)}}">{{ $blog->title }}</a></h3>
+                            <h3 class="heading">
+                                 <a class="text-success" href="{{route('blog.details',$blog)}}">{{ $blog->title }}</a>
+                            </h3>
                         </div>
-                        <a href="single.html" class="block-20" style="background-image: url('images/image_1.jpg');"></a>
-                    <div class="text mt-3 float-right d-block">
-                        <p>{{ substr($blog->description,0,100)."..." }}</p>
-                        <div class="d-flex align-items-center mt-4 meta">
-                            <p class="mb-0">
-                               <a href="{{route('blog.details',$blog)}}" class="btn btn-primary">Read More
-                                <span class="ion-ios-arrow-round-forward"></span></a></p>
-                            <p class="ml-auto mb-0">
-                                <a href="{{route('blog.details',$blog)}}" class="mr-2">{{$blog->author}}</a>
-                            </p>
+                        <a href="{{route('blog.details',$blog)}}" class="block-20"
+                         style="background-image: url('{{asset('storage/'.$blog->image)}}');"></a>
+                       <div class="text mt-3 float-right d-block">
+                            <p>{{ substr($blog->description,0,100)."..." }}</p>
+                            <div class="d-flex align-items-center mt-4 meta">
+                                <p class="mb-0">
+                                    <a href="{{route('blog.details',$blog)}}" class="btn btn-primary">Read More
+                                     <span class="ion-ios-arrow-round-forward"></span></a>
+                                </p>
+                                <p class="ml-auto mb-0">
+                                    <a href="{{route('blog.details',$blog)}}" class="mr-2">{{$blog->author}}</a>
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
             </div>
         @endforeach
+         <div class="col-md-12" align="center" >
+            {{$blogs->links()}}
+         </div>
       </div>
     </div>
   </section>

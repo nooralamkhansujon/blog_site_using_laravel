@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use DB;
 
 class Project extends Model
 {
@@ -23,6 +24,11 @@ class Project extends Model
     public function getRouteKeyName()
     {
         return "slug";
+    }
+
+    public function replies(){
+        $replies = DB::table('replies')->where([['parent_id',0],['comment_id',$this->id]])->orderBy('id','desc')->get();
+        return  $replies;
     }
 
 }
