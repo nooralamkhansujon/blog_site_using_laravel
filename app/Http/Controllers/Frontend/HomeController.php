@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Project;
 use App\Blog;
+use App\Comment;
+use App\Reply;
 
 class HomeController extends Controller
 {
@@ -19,7 +21,7 @@ class HomeController extends Controller
     }
 
     public function blog(){
-         $blogs = Blog::orderBy('id','desc')->limit(3)->get();
+         $blogs = Blog::paginate(3);
          return view('frontend.blog',compact('blogs'));
     }
 
@@ -43,4 +45,54 @@ class HomeController extends Controller
     public function project_details(Project $project){
         return view('frontend.project_details',compact('project'));
     }
+
+    public function comment(Request $request){
+
+          if($request->commentable_type == 'blog'){
+
+                $comment = Comment::create([
+                        'commentable_id'   => $request->commentable_id,
+                        'commentable_type' => 'App\Blog',
+                        'comment'          => $request->comment,
+                        'name'             => $request->name,
+                        'email'            => $request->email
+                    ]);
+                if($comment){
+                    echo "Ok";
+                }
+          }
+          elseif($request->commentable_type == 'project'){
+
+                $comment = Comment::create([
+                    'commentable_id'   => $request->commentable_id,
+                    'commentable_type' => 'App\Project',
+                    'comment'          => $request->comment,
+                    'name'             => $request->name,
+                    'email'            => $request->email
+                ]);
+                if($comment){
+                    echo "Ok";
+                }
+
+          }
+    }
+
+    public function reply(Request $request)
+    {
+        // echo json_encode($request->all());
+        $reply             = new Reply();
+        $reply->parent_id  = $request->parent_id;
+        $reply->comment_id = $request->comment_id;
+        $reply->reply      = $request->textdata;
+        if($reply->save())
+        {
+            echo "Ok";
+        }
+        else{
+            echo "Something error";
+        }
+
+    }
+
 }
+
