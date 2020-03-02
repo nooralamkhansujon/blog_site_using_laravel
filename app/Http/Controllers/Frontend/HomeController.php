@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Frontend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 use App\Project;
 use App\Blog;
 use App\Comment;
 use App\Reply;
+use App\Contact;
 
 class HomeController extends Controller
 {
@@ -93,6 +95,30 @@ class HomeController extends Controller
         }
 
     }
+
+    public function Contactsubmit(Request $request){
+        $validator = Validator::make($request->all(), [
+            'name'    => 'required|max:100|string',
+            'email'   => 'required|max:100|email',
+            'subject' => 'required|max:80',
+            'message' => 'required',
+        ]);
+
+        if($validator->fails())
+        {
+            return back()->withErrors($validator);
+        }
+        $contact = Contact::create($request->except('_token'));
+
+        if($contact)
+        {
+            $this->setSuccess("Your message has been send?");
+            return back();
+        }
+        $this->setError("Something is Error");
+        return back();
+    }
+
 
 }
 

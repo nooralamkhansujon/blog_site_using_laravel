@@ -1,17 +1,13 @@
 
-## About Laravel
+## portfolio Site Using Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
-
-
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+This portfolio site is 
 
 ## Dynamic uploaded image customization
-- ![this is default image](https://github.com/nooralamkhansujon/blog_site_using_laravel/blob/master/public/project_function_image/thumbnail_func.PNG)
+![this is default image](https://github.com/nooralamkhansujon/blog_site_using_laravel/blob/master/public/project_function_image/thumbnail_func.PNG)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1100 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost you and your team's skills by digging into our comprehensive video library.
+- This function is defined in main controller so that every child controler which extends the main controller can access  this function 
+- This function take 4 parameter(request_file_input,file_prefix,folder,width,height)
 
 ## Laravel Sponsors
 

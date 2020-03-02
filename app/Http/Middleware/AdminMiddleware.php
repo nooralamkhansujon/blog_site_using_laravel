@@ -21,9 +21,12 @@ class AdminMiddleware
         //if user is login
         if(Auth::check()){
             $user = User::find($request->user()->id);
-            if(strtolower($user->Rule->name) !=  "admin"){
+
+            // if user is not a admin then
+            if(strtolower($user->Rule->name) !== "admin" ){
                 return redirect()->intended(route('admin.login'));
             }
+
         }
         // if user is not login
         else{

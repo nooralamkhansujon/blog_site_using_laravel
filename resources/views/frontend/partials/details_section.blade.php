@@ -125,8 +125,7 @@ function reply_button($reply){
                                             $replyObject     =  App\Reply::find($replyObject->id);
                                             $substring      .= '<li class="comment">
                                                                 <div class="vcard bio">
-                                                                    <img src="'.asset("images/person_1.jpg").'"
-                                                                    alt="Image placeholder">
+                                                                    <img src="'.asset("images/person_1.jpg").'" alt="Image placeholder">
                                                                 </div>
                                                                 <div class="comment-body">
                                                                     <div class="meta">
@@ -182,7 +181,7 @@ function reply_button($reply){
                         @csrf
                         <div class="form-group">
                             <label for="name">Name *</label>
-                            <input type="text" class="form-control"  name="name" id="name" required>
+                            <input type="text" class="form-control"  name="name" id="name" required >
                         </div>
                         <div class="form-group">
                             @if(isset($blog))
@@ -198,7 +197,7 @@ function reply_button($reply){
                             <input type="email"  class="form-control" name="email" id="email" required>
                         </div>
                         <div class="form-group">
-                            <label for="comment">Comment</label>
+                            <label for="comment">Comment *</label>
                             <textarea name="comment" id="comment" cols="30" rows="10" class="form-control" required></textarea>
                         </div>
                         <div class="form-group">
@@ -257,11 +256,7 @@ function reply_button($reply){
                             data     : {comment_id:comment_id,parent_id:parent_id,textdata:textdata,_token:this._token.value},
                             success  : function(data){
                                 if(data.toLowerCase() == 'ok'){
-                                    let metatag  = document.createElement('meta');
-                                    let head    = document.getElementsByTagName('head')[0];
-                                    metatag.setAttribute('http-equiv','refresh');
-                                    metatag.setAttribute('content',"5");
-                                    head.appendChild(metatag);
+                                    addMetaTag();
                                 }
                             }
                         });
@@ -285,13 +280,24 @@ function reply_button($reply){
                     alert_message.classList.add('alert');
                     alert_message.classList.add('alert-success');
                     $("#alert_message").html('You comment our post');
-                    document.getElementById('#name').value    = " ";
-                    document.getElementById('#email').value   = " ";
-                    document.getElementById('#comment').value = " ";
+                    document.getElementById('name').value    = " ";
+                    document.getElementById('email').value   = " ";
+                    document.getElementById('comment').value = " ";
+                    addMetaTag();
+
                 }
             }
          });
     });
+
+    function addMetaTag()
+    {
+        let metatag  = document.createElement('meta');
+        let head    = document.getElementsByTagName('head')[0];
+        metatag.setAttribute('http-equiv','refresh');
+        metatag.setAttribute('content',"3");
+        head.appendChild(metatag);
+    }
 
 </script>
 

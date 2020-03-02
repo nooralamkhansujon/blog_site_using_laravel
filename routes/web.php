@@ -17,12 +17,16 @@ use App\Reply;
 
 // Auth::routes();
 
+// frontend route list
 Route::group([],function(){
    Route::get('/','Frontend\HomeController@index')->name('home');
    Route::get('/about','Frontend\HomeController@about')->name('about');
    Route::get('/blog','Frontend\HomeController@blog')->name('blog');
    Route::get('/blog/{blog}','Frontend\HomeController@blogDetails')->name('blog.details');
+
    Route::get('/contact','Frontend\HomeController@contact')->name('contact');
+   Route::post('/contact/submit','Frontend\HomeController@Contactsubmit')->name('contact.submit');
+
    Route::get('/portfolio','Frontend\HomeController@portfolio')->name('portfolio');
    Route::get('/project','Frontend\HomeController@project')->name('project');
    Route::get('/project/{project}','Frontend\HomeController@project_details')->name('project.details');
@@ -42,9 +46,11 @@ Route::group([],function(){
 
 
 
-
+//admin route list
 Route::group(['prefix'=> 'admin'],function(){
    Route::get('/','Backend\AdminController@dashboard')->name('dashboard')->middleware('admin');
+
+   //login routes
    Route::get('/login','Auth\AdminLoginController@adminShowLoginForm')->name('admin.login');
    Route::post('/login','Auth\AdminLoginController@adminLogin')->name('admin.login.submit');
    Route::post('/logout','Auth\AdminLoginController@adminLogout')->name('admin.logout.submit');
@@ -65,12 +71,10 @@ Route::group(['prefix'=> 'admin'],function(){
 
 
    //message route manageing
-   Route::get('/admincontact/restore/{id}','ProjectController@restore')->name('adminproject.restore')->middleware('admin');
-   Route::delete('/admincontact/force_delete/{id}','ProjectController@force_delete')->name('adminproject.force_delete')->middleware('admin');
-   Route::get('/admincontact/trashed','ProjectController@trashed')->name('adminproject.trashed')->middleware('admin');
-   Route::resource('admincomment','CommentController')->middleware('admin');
-
-//    Route::get('contact/message')->name('')
-
+   Route::get('/admincontact/restore/{id}','ContactController@restore')->name('admincontact.restore')->middleware('admin');
+   Route::delete('/admincontact/force_delete/{id}','ContactController@force_delete')->name('admincontact.force_delete')->middleware('admin');
+   Route::get('/admincontact/trashed','ContactController@trashed')->name('admincontact.trashed')->middleware('admin');
+   Route::get('/admincontact','ContactController@index')->name('admincontact.index')->middleware('admin');
+   Route::delete('/admincontact/{id}/delete','ContactController@delete')->name('admincontact.delete')->middleware('admin');
 
 });

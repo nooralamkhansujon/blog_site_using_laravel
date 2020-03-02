@@ -68,11 +68,11 @@ class ProjectController extends Controller
     private function projectData($data,$image){
 
         $data = array(
-            'project_title'      =>   $data['project_title'],
-            'slug'               =>   $data['slug'],
-            'project_url'        =>   $data['project_url'],
-            'project_description' =>  $data['project_description'],
-            'project_image'      =>   $image
+            'project_title'       =>   $data['project_title'],
+            'slug'                =>   $data['slug'],
+            'project_url'         =>   $data['project_url'],
+            'project_description' =>   $data['project_description'],
+            'project_image'       =>   $image
         );
         return $data;
     }
@@ -84,8 +84,8 @@ class ProjectController extends Controller
         if($id == null)
         {
             $validator = Validator::make($request->all(), [
-                'project_title'     => ['required','max:150','string'],
-                'project_url'       => ['required','max:150','url','unique:projects,project_url'],
+                'project_title'       => ['required','max:150','string'],
+                'project_url'         => ['required','max:150','url','unique:projects,project_url'],
                 'project_description' => 'required',
                 'project_image'       => 'required|mimes:jpeg,png,jpg|image'
             ]);
@@ -152,10 +152,14 @@ class ProjectController extends Controller
         }
         $data      = $this->projectData($request,$image);
         $project   = Project::create($data);
+
+        // if project is added then
         if($project){
             $this->setSuccess('Project has been Update Successfully!');
             return redirect()->route('adminproject.index');
         }
+
+        // else show error
         $this->setError('Error! Something is Wrong.');
         return back()->withInput();
     }
@@ -168,9 +172,10 @@ class ProjectController extends Controller
      */
     public function destroy($id)
     {
-        //your blog will be trashed
+
         $project    = Project::find($id);
 
+        //your project will be trashed
         if($project->delete()){
             $this->setSuccess('Your Project has been trashed successfully');
             return redirect()->route('adminproject.trashed');
@@ -183,6 +188,7 @@ class ProjectController extends Controller
     {
         $project = Project::onlyTrashed($id)->where('id',$id)->get()[0];
 
+        //if your project is force_delete
         if($project->forceDelete())
         {
             $this->setSuccess('Your Project has been Deleted successfully');
@@ -195,7 +201,7 @@ class ProjectController extends Controller
     public function restore($id)
     {
         $project = Project::onlyTrashed()->where('id',$id)->get()[0];
-        // dd($blog);
+
 
         if($project->restore())
         {

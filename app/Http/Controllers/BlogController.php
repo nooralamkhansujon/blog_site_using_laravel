@@ -75,9 +75,7 @@ class BlogController extends Controller
             return back()->withErrors($validator);
         }
 
-        // create thumbnail
-        $image = $this->thumbnail($request->file('image'),'blog','blog',300,300);
-
+        $image = $this->thumbnail($request->file('image'),'blog','blog',300,300);// create thumbnail
         $data = $this->Blogdata($request,$image); //it will return blog data
 
         //insert data into blog
@@ -86,6 +84,7 @@ class BlogController extends Controller
             $this->setSuccess('New Blog has been added Successfully!');
             return redirect()->route('blogpost.index');
         }
+        //if data is not inserted in blog then show error
         $this->setError('Error!Something is wrong.');
         return back()->withInput();
 
@@ -103,8 +102,6 @@ class BlogController extends Controller
         $blog = Blog::find($id);
         return view('backend.blog.create',compact('blog'));
     }
-
-
 
 
     /**
@@ -129,9 +126,9 @@ class BlogController extends Controller
             // create thumbnail and return blog/filename
             $image = $this->thumbnail($request->file('image'),'blog','blog',300,300);
         }
+
         $data              = $this->Blogdata($request,$image);//this function will return array of request data
-        //update blog data
-        $blog->title       = $data['title'];
+        $blog->title       = $data['title']; //update blog data
         $blog->slug        = $data['slug'];
         $blog->author      = $data['author'];
         $blog->description = $data['description'];

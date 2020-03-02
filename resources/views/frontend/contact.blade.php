@@ -58,24 +58,39 @@
       <div class="row no-gutters block-9">
         <div class="col-md-6 order-md-last d-flex">
 
-          <form action="#" class="bg-primary p-5 contact-form">
+        <form action="{{route('contact.submit')}}" method="POST" class="bg-primary p-5 contact-form">
+            @csrf
             <div class="form-group">
-              <input type="text"  class="form-control" placeholder="enter your name" />
+              <input type="text" name="name"  class="form-control"
+              placeholder="Enter your name" />
+              @if($errors->has('name'))
+                <span class="text-warning d-block">{{$errors->first('name')}}</span>
+              @endif
             </div>
 
-
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="your email" />
+              <input type="text" name="email" class="form-control" placeholder="Enter Your Email" />
+              @if($errors->has('email'))
+                 <span class="text-warning d-block">{{$errors->first('email')}}</span>
+              @endif
             </div>
 
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="Subject">
+              <input type="text" name="subject" class="form-control" placeholder="Subject">
+              @if($errors->has('subject'))
+                    <span class="text-warning d-block">{{$errors->first('subject')}}</span>
+              @endif
             </div>
+
             <div class="form-group">
-              <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
+              <textarea name="message" id="message" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
+              @if($errors->has('message'))
+                  <span class="text-warning d-block">{{$errors->first('message')}}</span>
+              @endif
             </div>
+
             <div class="form-group">
-              <input type="submit" value="Send Message" class="btn btn-darken py-3 px-5">
+                 <input type="submit" value="Send Message" class="btn btn-darken py-3 px-5">
             </div>
           </form>
 

@@ -39,6 +39,7 @@
 
         .replay_form{
             display:none;
+
         }
         .show{
             display:block;
@@ -83,15 +84,11 @@
                             <a href="{{route('login')}}" class="nav-link"><span>Login</span></a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('register')}}" class="nav-link">
-                                <span>Register</span>
-                            </a>
+                            <a href="{{route('register')}}" class="nav-link"><span>Register</span></a>
                         </li>
                 @else
                         <li class="nav-item">
-                            <a href="{{route('logout')}}" id="logout" class="nav-link">
-                                <span>Logout</span>
-                            </a>
+                            <a href="{{route('logout')}}" id="logout" class="nav-link"><span>Logout</span></a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>

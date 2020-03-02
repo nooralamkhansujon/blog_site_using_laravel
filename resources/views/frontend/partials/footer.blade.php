@@ -13,26 +13,12 @@
               <div class="ftco-footer-widget mb-4 ml-md-4">
                 <h2 class="ftco-heading-2">Links</h2>
                 <ul class="list-unstyled">
-                  <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Home</a></li>
-                  <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>About</a></li>
-                  <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Practice Areas</a></li>
-                  <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Attorneys</a></li>
-                  <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Blog</a></li>
-                  <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Contact</a></li>
-                </ul>
-              </div>
-            </div>
-            <div class="col-md">
-               <div class="ftco-footer-widget mb-4">
-                <h2 class="ftco-heading-2">Practice Areas</h2>
-                <ul class="list-unstyled">
-                  <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Family Law</a></li>
-                  <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Business Law</a></li>
-                  <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Insurance Law</a></li>
-                  <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Criminal Law</a></li>
-                  <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Drug Offenses</a></li>
-                  <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Property Law</a></li>
-                  <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Employment Law</a></li>
+                  <li><a href="{{route('home')}}"><span class="icon-long-arrow-right mr-2"></span>Home</a></li>
+                  <li><a href="{{route('about')}}"><span class="icon-long-arrow-right mr-2"></span>About</a></li>
+                  <li><a href="{{route('blog')}}"><span class="icon-long-arrow-right mr-2"></span>Blog</a></li>
+                  <li><a href="{{route('contact')}}"><span class="icon-long-arrow-right mr-2"></span>Contact</a></li>
+                  <li><a href="{{route('project')}}"><span class="icon-long-arrow-right mr-2"></span>Project</a></li>
+                  <li><a href="{{route('portfolio')}}"><span class="icon-long-arrow-right mr-2"></span>Portfolio</a></li>
                 </ul>
               </div>
             </div>
@@ -56,10 +42,12 @@
           </div>
           <div class="row">
             <div class="col-md-12 text-center">
-
-              <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                    <p>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+                        All rights reserved | This template is made with <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </p>
             </div>
           </div>
         </div>

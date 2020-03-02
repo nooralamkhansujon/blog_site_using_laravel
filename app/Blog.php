@@ -17,7 +17,9 @@ class Blog extends Model
           return $this->morphMany('App\Comment', 'commentable');
       }
       public function replies($comment_id){
-           $replies = DB::table('replies')->where([['parent_id',0],['comment_id',$comment_id]])->orderBy('id','desc')->get();
+           $replies = DB::table('replies')
+                        ->where([['parent_id',0],['comment_id',$comment_id]])
+                        ->orderBy('id','desc')->get();
            return  $replies;
       }
 
