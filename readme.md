@@ -5,7 +5,7 @@
 ## Dynamic uploaded image customization
 ![image customization](https://github.com/nooralamkhansujon/blog_site_using_laravel/blob/master/public/project_function_image/thumbnail_func.PNG)
 
-- This function is defined in main controller so that every child controler which extends the main controller can access  this function 
+- This function is defined in main controller so that every child controller which extends the main controller can access  this function 
 - This function take 4 parameter(request_file_input,file_prefix,folder,width,height)
 
 ## blogcontroller customvalidate function  for blog store and update 
