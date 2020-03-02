@@ -91,29 +91,6 @@ class BlogController extends Controller
     }
 
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $blog = Blog::find($id);
-        return view('backend.blog.create',compact('blog'));
-    }
-
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
     public function update(Request $request, $id)
     {
         //validate the request
@@ -122,10 +99,8 @@ class BlogController extends Controller
         $blog     = Blog::find($id);
         $image    = $blog->image ;
         if(isset($request->image))
-        {
             // create thumbnail and return blog/filename
             $image = $this->thumbnail($request->file('image'),'blog','blog',300,300);
-        }
 
         $data              = $this->Blogdata($request,$image);//this function will return array of request data
         $blog->title       = $data['title']; //update blog data
@@ -140,8 +115,6 @@ class BlogController extends Controller
         }
         $this->setError('Error! Blog is not Updated!');
         return back();
-
-
     }
     public function destroy($id)
     {
