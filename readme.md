@@ -13,18 +13,17 @@
 
 - This function is used for store and update request blog column
 
-## blogcontroller 
+## blogcontroller store function for add new blog
 ![blog store function](https://github.com/nooralamkhansujon/blog_site_using_laravel/blob/master/public/project_function_image/blog_store_function.PNG)
 
+- This function will store new blog in database 
 
-## Contributing
+## Blogcontroller force delete function
+![blog store function](https://github.com/nooralamkhansujon/blog_site_using_laravel/blob/master/public/project_function_image/blog_controller_force_delete_function.PNG)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- This function will remove a blog permanently from thed database
 
-## Security Vulnerabilities
+## Blogcontroller update  function
+![blog store function](https://github.com/nooralamkhansujon/blog_site_using_laravel/blob/master/public/project_function_image/blog_controller_update_function.PNG)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- This function will update the blog 
