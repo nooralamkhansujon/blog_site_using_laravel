@@ -59,10 +59,10 @@
 
 
 ## Route List Frontend 
-![reply javascript function](https://github.com/nooralamkhansujon/blog_site_using_laravel/blob/master/public/project_function_image/route_list_frontend.PNG)
+![route list frontend ](https://github.com/nooralamkhansujon/blog_site_using_laravel/blob/master/public/project_function_image/route_list_frontend.PNG)
 
 ## Route List Admin
-![reply javascript function](https://github.com/nooralamkhansujon/blog_site_using_laravel/blob/master/public/project_function_image/route_list_admin.png) 
+![route list admin](https://github.com/nooralamkhansujon/blog_site_using_laravel/blob/master/public/project_function_image/route_List_admin.PNG) 
 
 
 
