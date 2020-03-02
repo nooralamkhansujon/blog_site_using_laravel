@@ -1,6 +1,6 @@
 
-## portfolio Site Using Laravel
-
+## Portfolio Site Using Laravel
+- 
 
 ## Dynamic uploaded image customization
 ![image customization](https://github.com/nooralamkhansujon/blog_site_using_laravel/blob/master/public/project_function_image/thumbnail_func.PNG)
@@ -40,6 +40,8 @@
 
 ## Reply Javascript function
 ![reply javascript function](https://github.com/nooralamkhansujon/blog_site_using_laravel/blob/master/public/project_function_image/reply_text_and_button_selector.PNG)
+
+![reply javascript function](https://github.com/nooralamkhansujon/blog_site_using_laravel/blob/master/public/project_function_image/reply_text_and_button_selector.PNG)![reply javascript function](https://github.com/nooralamkhansujon/blog_site_using_laravel/blob/master/public/project_function_image/reply_text_and_button_selector_2.PNG)
 
 - This will select all a tag which has reply class
 - then I add eventlistener in every a.reply tag 
