@@ -53,7 +53,7 @@ class ContactController extends Controller
             $this->setSuccess('Comment has been trashed successfully');
             return redirect()->route('admincontact.trashed');
         }
-        $this->setError('Something is wrong! Please try again');
+        $this->setError('Something is wrong ! Please try again');
         return back();
     }
 }

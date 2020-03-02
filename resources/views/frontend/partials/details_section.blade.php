@@ -138,7 +138,7 @@ function reply_button($reply){
                                                                     data-comment_id='{$replyObject->comment_id}'>Reply</a>
                                                                 </p>";
                                             //this is button section
-                                            $substring      .= "<div class='row'>
+                                            $substring   .= "<div class='row'>
                                                                 <div class='col-md-12'>
                                                                     <textarea name='reply' placeholder='Enter Your comment'
                                                                     id='reply_text_{$replyObject->id}_reply'
